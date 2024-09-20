@@ -9,7 +9,7 @@ This document tracks bird sound resources, with an emphasis on nocturnal flight 
 * BirdWeather PUC: [birdweather.com](https://birdweather.com). Explore the 1,700+ BirdWeather stations, mostly in North America and Europe: [app.birdweather.com](https://app.birdweather.com). This device, which makes live identifications using the BirdNET API, is good for passive monintoring and recording of bird calls but has not proven effective for nocturnal flight calls. See "BirdNET API" below as to why.
 ## DIY (with a purchase option)
 * [OldBird 21c](http://oldbird.org)
-# Examples of other setups at various price-points
+# Recording setups at various price-points
 * See Nocturnal Flight Calls Facebook group below
 
 # Guides and Communities
