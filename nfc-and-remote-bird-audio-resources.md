@@ -1,5 +1,6 @@
-* My eBird account: [Andrew W. - NFCs/Remote field audio](https://ebird.org/profile/NjIxMzM1Nw/world)
+This document tracks bird sound resources, with an emphasis on nocturnal flight call recording.
 
+* My eBird account: [Andrew W. - NFCs/Remote field audio](https://ebird.org/profile/NjIxMzM1Nw/world)
 * My uploaded recordings: [macaulaylibrary.org](https://search.macaulaylibrary.org/catalog?userId=USER6213357)
 
 # Low-cost recorders
