@@ -16,7 +16,7 @@
 * ["AudioMoth: a practical guide to the open-source ARU"](https://github.com/rhine3/audiomoth-guide/blob/master/guide.md)
 
 # Nocturnal Migration Forecasting and Alerts
-* [BirdCast migration tools](https://birdcast.info/migration-tools)
+* [BirdCast migration tools](https://birdcast.info/migration-tools): Use to plan for good NFC nights and anticipate migrant species
 
 # Software
 * [Audacity](https://audacityteam.org) for editing: audacityteam.org
