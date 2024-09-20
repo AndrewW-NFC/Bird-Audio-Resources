@@ -4,7 +4,7 @@
 
 # Low-cost recorders
 ## For purchase
-* AudioMoth: [https://openacousticdevices.info/audiomoth](openacousticdevices.info/audiomoth)
+* AudioMoth: [https://openacousticdevices.info/audiomoth](openacousticdevices.info/audiomoth).
 * BirdWeather PUC: [https://birdweather.com](birdweather.com)
 ## DIY (with a purchase option)
 * [OldBird 21c](http://oldbird.org)
@@ -13,6 +13,7 @@
 * [Peterson Field Guide to Bird Sounds of Eastern North America](https://harpercollins.com/products/peterson-field-guide-to-bird-sounds-of-eastern-north-america-nathan-pieplow)
 * ibid., online version: [academy.allaboutbirds.org/peterson-field-guide-to-bird-sounds](academy.allaboutbirds.org/peterson-field-guide-to-bird-sounds)
 * Facebook group ["Nocturnal Flight Calls"](https://www.facebook.com/groups/NocturnalFlightCalls/)
+* [AudioMoth guide](https://github.com/rhine3/audiomoth-guide/blob/master/guide.md)
 
 # Nocturnal Migration Forecasting and Alerts
 * [BirdCast migration tools](https://birdcast.info/migration-tools)
