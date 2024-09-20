@@ -8,15 +8,21 @@
 * BirdWeather PUC: [https://birdweather.com](birdweather.com). Explore the 1,700+ BirdWeather stations, mostly in North America and Europe: [app.birdweather.com](https://app.birdweather.com)
 ## DIY (with a purchase option)
 * [OldBird 21c](http://oldbird.org)
+# Examples of other setups
+* See Nocturnal Flight Calls Facebook group below
 
 # Guides and Communities
 * [Peterson Field Guide to Bird Sounds of Eastern North America](https://harpercollins.com/products/peterson-field-guide-to-bird-sounds-of-eastern-north-america-nathan-pieplow)
 * ibid., online version: [academy.allaboutbirds.org/peterson-field-guide-to-bird-sounds](academy.allaboutbirds.org/peterson-field-guide-to-bird-sounds)
 * Facebook group ["Nocturnal Flight Calls"](https://www.facebook.com/groups/NocturnalFlightCalls/). Includes [a thread](https://www.facebook.com/groups/NocturnalFlightCalls/posts/10165508057595436/) about people's different NFC recording setups.
 * ["AudioMoth: a practical guide to the open-source ARU"](https://github.com/rhine3/audiomoth-guide/blob/master/guide.md) (ARU = autonomous recording unit)
+* [Bill Evans' glossary of bird call terms](https://github.com/AndrewW-NFC/Bird-Audio-Resources/blob/main/bird-audio-resources.md)
 
 # Nocturnal Migration Forecasting and Alerts
 * [BirdCast migration tools](https://birdcast.info/migration-tools): Use to plan for good NFC nights and anticipate migrant species
+
+# The eBird NFC protocol
+* If you use eBird to track your observations, you should follow [its Nocturnal Flight Call Count protocol](https://support.ebird.org/en/support/solutions/articles/48000950859-guide-to-ebird-protocols#anchorNFC). Remember that eBird checklists ultimately feed into ornithological research; following protocols is thus essential for researchers to be sure they are analyzing data that have been collected in consistent ways. The NFC protocol differs from the more familiar ones. For example, since it's impossible to tally birds while they're migrating high in the dark, the NFC protocol asks you to count the _number of recorded calls_ and include those counts as species comments. 
 
 # Software
 * [Audacity](https://audacityteam.org) for editing: audacityteam.org
@@ -26,14 +32,21 @@
 
 **Note:** machine learning-based programs like Merlin and BirdNET aren't as well trained on flight calls as they are on songs and regular calls. Expect that NFCs will not result in positive identifications. This is also why it's so important to learn spectrograms.
 
+# Audio Repositories
+* The Macaulay Library, Cornell University. [This link](https://search.macaulaylibrary.org/catalog?mediaType=audio&tag=flight_call) takes you to a Macaulay search for flight calls, though not necessarily nocturnal flight calls. Keep an eye out for usernames that include "NFC", "NFC Station", etc.
+* [Xeno-Canto](https://xeno-canto.org). [This link](https://xeno-canto.org/explore?query=type:%22nocturnal%20flight%20call%22) takes you to a Xeno-Canto search for nocturnal flight calls.
+
 # Practice
 * [Earbider](https://earbirder.com): Custom sound/sprectogram quizzes, including filtering by flight calls or NFC stations only
 
-# Books
-* [The Singing Life of Birds: The Art and Science of Listening to Birdsong](https://www.goodreads.com/book/show/6263.The_Singing_Life_of_Birds)
-* Textbook: [The Migration Ecology of Birds](https://www.goodreads.com/book/show/2138419.The_Migration_Ecology_of_Birds)
-* Textbook: [Bird Song: Biological Themes and Variations](https://www.goodreads.com/book/show/4579255-bird-song)
-* Interdisciplinary academic monograph: [Listening in the Field: Recording and the Science of Birdsong](https://www.goodreads.com/book/show/36722601-listening-in-the-field)
+# Books and Articles
+* _[The Singing Life of Birds: The Art and Science of Listening to Birdsong]_(https://www.goodreads.com/book/show/6263.The_Singing_Life_of_Birds)
+* Textbook: _[The Migration Ecology of Birds]_(https://www.goodreads.com/book/show/2138419.The_Migration_Ecology_of_Birds)
+* Textbook: _[Bird Song: Biological Themes and Variations]_(https://www.goodreads.com/book/show/4579255-bird-song)
+* Interdisciplinary academic monograph: _[Listening in the Field: Recording and the Science of Birdsong]_(https://www.goodreads.com/book/show/36722601-listening-in-the-field)
+* ["Welcome to the Dark Side: Your Guide to Nocturnal Migration Birding"](https://www.audubon.org/magazine/spring-2022/welcome-dark-side-your-guide-nocturnal-migration), _Audubon Magazine_ (Spring 2022)
+* ["Here’s How You Go Birding in the Middle of the Night"](https://www.scientificamerican.com/podcast/episode/heres-how-you-go-birding-in-the-middle-of-the-night1/), _Scientific American_ (August 2023)
+* [Birding while you sleep: how to get started with noc-mig](https://www.birdguides.com/articles/general-birding/birding-while-you-sleep-how-to-get-started-with-noc-mig/), BirdGuides (June 2020)
 
 # Recording: Bill Evans (OldBird) "Big Migration Night"
 * [soundcloud.com/user-830174402/big-migration-night](https://soundcloud.com/user-830174402/big-migration-night)
