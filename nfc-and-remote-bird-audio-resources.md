@@ -39,7 +39,7 @@
 
 # Skills Development
 * [Earbider](https://earbirder.com): Custom sound/sprectogram quizzes, including filtering by flight calls or NFC stations only
-* [eBird quizzes](https://ebird.org/quiz). Location- and date-specific quizzes on all bird sounds, not just NFCs.
+* [eBird quizzes](https://ebird.org/quiz): Location- and date-specific quizzes on all bird sounds, not just NFCs.
 
 # Books and Articles
 * _[The Singing Life of Birds: The Art and Science of Listening to Birdsong]_(https://www.goodreads.com/book/show/6263.The_Singing_Life_of_Birds)
