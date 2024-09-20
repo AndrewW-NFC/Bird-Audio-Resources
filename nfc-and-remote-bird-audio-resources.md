@@ -27,10 +27,10 @@ This document tracks bird sound resources, with an emphasis on nocturnal flight 
 * If you use eBird to track your observations, you should follow [its Nocturnal Flight Call Count protocol](https://support.ebird.org/en/support/solutions/articles/48000950859-guide-to-ebird-protocols#anchorNFC). Remember that eBird checklists ultimately feed into ornithological research; following protocols is thus essential for researchers to be sure they are analyzing data that have been collected in consistent ways. The NFC protocol differs from the more familiar ones. For example, since it's impossible to tally birds while they're migrating high in the dark, the NFC protocol asks you to count the _number of recorded calls_ and include those counts as species comments. 
 
 # Software
-* [Audacity](https://audacityteam.org) for editing: audacityteam.org
-* [Vesper](https://github.com/RichardLitt/nfc-resources) and Nighthawk, software sepcifically for NFC IDs. I've yet to try these.
-* [Merlin](https://merlin.allaboutbirds.org/): the go-to bird sound ID app
-* [BirdNET API](https://birdnet.cornell.edu/api/): web-based bird sound ID. Unless you're using the API for development, consider this merely a backup option for Merlin, as its matches aren't filtered by date and location
+* [Audacity](https://audacityteam.org) for "viewing", listening to, and editing recordings
+* [Vesper](https://github.com/RichardLitt/nfc-resources) and Nighthawk, software specifically for analyzing long NFC recording sessions. I've yet to try these.
+* [Merlin](https://merlin.allaboutbirds.org/): the go-to bird sound ID app. Does not work well for NFCs.
+* [BirdNET API](https://birdnet.cornell.edu/api/): web-based bird sound ID. Unless you're using the API for other projects, consider this merely a backup option for Merlin, as its matches aren't filtered by date and location
 
 **Note:** machine learning-based programs like Merlin and BirdNET aren't as well trained on flight calls as they are on songs and regular calls. Expect that NFCs will not result in positive identifications. This is also why it's so important to learn spectrograms.
 
