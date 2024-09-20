@@ -13,7 +13,7 @@
 * [Peterson Field Guide to Bird Sounds of Eastern North America](https://harpercollins.com/products/peterson-field-guide-to-bird-sounds-of-eastern-north-america-nathan-pieplow)
 * ibid., online version: [academy.allaboutbirds.org/peterson-field-guide-to-bird-sounds](academy.allaboutbirds.org/peterson-field-guide-to-bird-sounds)
 * Facebook group ["Nocturnal Flight Calls"](https://www.facebook.com/groups/NocturnalFlightCalls/). Includes [a thread](https://www.facebook.com/groups/NocturnalFlightCalls/posts/10165508057595436/) about people's different NFC recording setups.
-* ["AudioMoth: a practical guide to the open-source ARU"](https://github.com/rhine3/audiomoth-guide/blob/master/guide.md)
+* ["AudioMoth: a practical guide to the open-source ARU"](https://github.com/rhine3/audiomoth-guide/blob/master/guide.md) (ARU = autonomous recording unit)
 
 # Nocturnal Migration Forecasting and Alerts
 * [BirdCast migration tools](https://birdcast.info/migration-tools): Use to plan for good NFC nights and anticipate migrant species
