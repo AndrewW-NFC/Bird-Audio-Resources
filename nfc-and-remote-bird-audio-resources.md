@@ -56,6 +56,6 @@ This document tracks bird sound resources, with an emphasis on nocturnal flight 
 * Bill Evans (OldBird) ["Big Migration Night"](https://soundcloud.com/user-830174402/big-migration-night)
 
 # People
-* [Bill Evans](https://scholar.google.com/citations?user=XoZ5lP0AAAAJ&hl=en&oi=sra), ear2sky@oldbird.org
-* [Benjamin Van Doren]([https://nres.illinois.edu/directory/vandoren](https://www.migrationbiology.org/))
+* [Bill Evans](https://scholar.google.com/citations?user=XoZ5lP0AAAAJ&hl=en&oi=sra)
+* [Benjamin Van Doren](https://www.migrationbiology.org)
 * [Joe Gyekis](https://www.youtube.com/user/jgyekis/playlists)
