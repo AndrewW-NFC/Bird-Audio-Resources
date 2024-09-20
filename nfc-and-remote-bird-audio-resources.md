@@ -37,8 +37,9 @@
 * The Macaulay Library, Cornell University. [This link](https://search.macaulaylibrary.org/catalog?mediaType=audio&tag=flight_call) takes you to a Macaulay search for flight calls, though not necessarily nocturnal flight calls. Keep an eye out for usernames that include "NFC", "NFC Station", etc.
 * [Xeno-Canto](https://xeno-canto.org). [This link](https://xeno-canto.org/explore?query=type:%22nocturnal%20flight%20call%22) takes you to a Xeno-Canto search for nocturnal flight calls.
 
-# Practice
+# Skills Development
 * [Earbider](https://earbirder.com): Custom sound/sprectogram quizzes, including filtering by flight calls or NFC stations only
+* [eBird quizzes](https://ebird.org/quiz). Location- and date-specific quizzes on all bird sounds, not just NFCs.
 
 # Books and Articles
 * _[The Singing Life of Birds: The Art and Science of Listening to Birdsong]_(https://www.goodreads.com/book/show/6263.The_Singing_Life_of_Birds)
