@@ -5,7 +5,7 @@
 # Low-cost recorders
 ## For purchase
 * AudioMoth: [https://openacousticdevices.info/audiomoth](openacousticdevices.info/audiomoth).
-* BirdWeather PUC: [https://birdweather.com](birdweather.com)
+* BirdWeather PUC: [https://birdweather.com](birdweather.com). Explore BirdWeather stations: [app.birdweather.com](https://app.birdweather.com)
 ## DIY (with a purchase option)
 * [OldBird 21c](http://oldbird.org)
 
