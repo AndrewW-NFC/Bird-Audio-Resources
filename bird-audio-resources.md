@@ -21,6 +21,10 @@
 # Software
 * [Audacity](https://audacityteam.org) for editing: audacityteam.org
 * [Vesper](https://github.com/RichardLitt/nfc-resources) and Nighthawk, software sepcifically for NFC IDs. I've yet to try these.
+* [Merlin](https://merlin.allaboutbirds.org/): the go-to bird sound ID app
+* [BirdNET API](https://birdnet.cornell.edu/api/): web-based bird sound ID. Unless you're using the API for development, consider this merely a backup option for Merlin, as its matches aren't filtered by date and location
+
+**Note:** machine learning-based programs like Merlin and BirdNET aren't as well trained on flight calls as they are on songs and regular calls. Expect that NFCs will not result in positive identifications. This is also why it's so important to learn spectrograms.
 
 # Practice
 * [Earbider](https://earbirder.com): Custom sound/sprectogram quizzes, including filtering by flight calls only
