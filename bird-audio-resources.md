@@ -22,7 +22,7 @@
 * [Vesper](https://github.com/RichardLitt/nfc-resources) and Nighthawk, software sepcifically for NFC IDs. I've yet to try these.
 
 # Practice
-* [Earbider](https://earbirder.com) (custom sound/sprectogram quizzes, including filtering by flight calls only)
+* [Earbider](https://earbirder.com): Custom sound/sprectogram quizzes, including filtering by flight calls only
 
 # Bill Evans (OldBird) "Big Migration Night" Recording
 * [soundcloud.com/user-830174402/big-migration-night](https://soundcloud.com/user-830174402/big-migration-night)
