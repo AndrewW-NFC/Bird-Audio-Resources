@@ -42,7 +42,7 @@
 * [eBird quizzes](https://ebird.org/quiz): Location- and date-specific quizzes on all bird sounds, not just NFCs.
 
 # Books and Articles
-* _[The Singing Life of Birds: The Art and Science of Listening to Birdsong]_(https://www.goodreads.com/book/show/6263.The_Singing_Life_of_Birds)
+* [_The Singing Life of Birds: The Art and Science of Listening to Birdsong_](https://www.goodreads.com/book/show/6263.The_Singing_Life_of_Birds)
 * Textbook: _[The Migration Ecology of Birds]_(https://www.goodreads.com/book/show/2138419.The_Migration_Ecology_of_Birds)
 * Textbook: _[Bird Song: Biological Themes and Variations]_(https://www.goodreads.com/book/show/4579255-bird-song)
 * Interdisciplinary academic monograph: _[Listening in the Field: Recording and the Science of Birdsong]_(https://www.goodreads.com/book/show/36722601-listening-in-the-field)
