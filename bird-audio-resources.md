@@ -13,7 +13,7 @@
 * [Peterson Field Guide to Bird Sounds of Eastern North America](https://harpercollins.com/products/peterson-field-guide-to-bird-sounds-of-eastern-north-america-nathan-pieplow)
 * ibid., online version: [academy.allaboutbirds.org/peterson-field-guide-to-bird-sounds](academy.allaboutbirds.org/peterson-field-guide-to-bird-sounds)
 * Facebook group ["Nocturnal Flight Calls"](https://www.facebook.com/groups/NocturnalFlightCalls/)
-* [AudioMoth guide](https://github.com/rhine3/audiomoth-guide/blob/master/guide.md)
+* ["AudioMoth: a practical guide to the open-source ARU"](https://github.com/rhine3/audiomoth-guide/blob/master/guide.md)
 
 # Nocturnal Migration Forecasting and Alerts
 * [BirdCast migration tools](https://birdcast.info/migration-tools)
