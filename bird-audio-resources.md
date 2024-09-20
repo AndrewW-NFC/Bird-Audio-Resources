@@ -4,8 +4,8 @@ My uploaded recordings: [macaulaylibrary.org](https://search.macaulaylibrary.org
 
 # Low-cost recorders
 ## For purchase
-* AudioMoth: openacousticdevices.info/audiomoth
-* BirdWeather: PUC birdweather.com
+* AudioMoth: [https://openacousticdevices.info/audiomoth](openacousticdevices.info/audiomoth)
+* BirdWeather PUC: [https://birdweather.com](birdweather.com)
 ## DIY (with a purchase option)
 * [OldBird 21c](http://oldbird.org)
 
