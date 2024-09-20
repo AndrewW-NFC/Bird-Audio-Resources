@@ -27,7 +27,13 @@
 **Note:** machine learning-based programs like Merlin and BirdNET aren't as well trained on flight calls as they are on songs and regular calls. Expect that NFCs will not result in positive identifications. This is also why it's so important to learn spectrograms.
 
 # Practice
-* [Earbider](https://earbirder.com): Custom sound/sprectogram quizzes, including filtering by flight calls only
+* [Earbider](https://earbirder.com): Custom sound/sprectogram quizzes, including filtering by flight calls or NFC stations only
+
+# Books
+* [The Singing Life of Birds: The Art and Science of Listening to Birdsong](https://www.goodreads.com/book/show/6263.The_Singing_Life_of_Birds)
+* Textbook: [The Migration Ecology of Birds](https://www.goodreads.com/book/show/2138419.The_Migration_Ecology_of_Birds)
+* Textbook: [Bird Song: Biological Themes and Variations](https://www.goodreads.com/book/show/4579255-bird-song)
+* Interdisciplinary academic monograph: [Listening in the Field: Recording and the Science of Birdsong](https://www.goodreads.com/book/show/36722601-listening-in-the-field)
 
 # Recording: Bill Evans (OldBird) "Big Migration Night"
 * [soundcloud.com/user-830174402/big-migration-night](https://soundcloud.com/user-830174402/big-migration-night)
