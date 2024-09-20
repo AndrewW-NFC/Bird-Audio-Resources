@@ -1,4 +1,4 @@
-This document tracks bird sound resources, with an emphasis on nocturnal flight call recording.
+This document tracks bird sound resources, with an emphasis on nocturnal flight call recording. Just sort of throwing everything in here for now but will tidy up eventually.
 
 * My eBird account: [Andrew W. - NFCs/Remote field audio](https://ebird.org/profile/NjIxMzM1Nw/world)
 * My uploaded recordings: [macaulaylibrary.org](https://search.macaulaylibrary.org/catalog?userId=USER6213357)
