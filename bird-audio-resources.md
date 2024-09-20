@@ -8,7 +8,7 @@
 * BirdWeather PUC: [https://birdweather.com](birdweather.com). Explore the 1,700+ BirdWeather stations, mostly in North America and Europe: [app.birdweather.com](https://app.birdweather.com)
 ## DIY (with a purchase option)
 * [OldBird 21c](http://oldbird.org)
-# Examples of other setups
+# Examples of other setups at various price-points
 * See Nocturnal Flight Calls Facebook group below
 
 # Guides and Communities
