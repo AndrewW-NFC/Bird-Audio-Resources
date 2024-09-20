@@ -5,7 +5,7 @@
 # Low-cost recorders
 ## For purchase
 * AudioMoth: [https://openacousticdevices.info/audiomoth](openacousticdevices.info/audiomoth).
-* BirdWeather PUC: [https://birdweather.com](birdweather.com). Explore the 1,700+ BirdWeather stations, mostly in North America and Europe: [app.birdweather.com](https://app.birdweather.com)
+* BirdWeather PUC: [https://birdweather.com](birdweather.com). Explore the 1,700+ BirdWeather stations, mostly in North America and Europe: [app.birdweather.com](https://app.birdweather.com). This device, which makes live identifications using the BirdNET API, is good for passive monintoring and recording of bird calls but has not proven effective for nocturnal flight calls. See "BirdNET API" below as to why.
 ## DIY (with a purchase option)
 * [OldBird 21c](http://oldbird.org)
 # Examples of other setups at various price-points
