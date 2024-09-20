@@ -2,18 +2,20 @@ My eBird account: https://ebird.org/profile/NjIxMzM1Nw/world
 
 My NFC IDs are made mostly by spectrogram analysis -- visually comparing recorded calls to confirmed spectrograms.
 
-==Low-cost recorders==
+# Low-cost recorders
+## For purchase
 * AudioMoth: openacousticdevices.info/audiomoth
 * BirdWeather: PUC birdweather.com
-* OldBird: oldbird.org
+## DIY (with a purchase option)
+* [OldBird 21c](http://oldbird.org)
 
-==Guides==
-* Peterson Field Guide to Bird Sounds of Eastern North America: harpercollins.com/products/peterson-field-guide-to-bird-sounds-of-eastern-north-america-nathan-pieplow
-* ibid., online:  academy.allaboutbirds.org/peterson-field-guide-to-bird-sounds
+# Guides
+* [Peterson Field Guide to Bird Sounds of Eastern North America](https://harpercollins.com/products/peterson-field-guide-to-bird-sounds-of-eastern-north-america-nathan-pieplow)
+* ibid., online: [academy.allaboutbirds.org/peterson-field-guide-to-bird-sounds](academy.allaboutbirds.org/peterson-field-guide-to-bird-sounds)
 
-==Nocturnal Migration Forecasting and Alerts==
-* birdcast.info/migration-tools
+# Nocturnal Migration Forecasting and Alerts
+* [BirdCast migration tools](https://birdcast.info/migration-tools)
 
-==Software==
-* Audacity for editing: audacityteam.org
-* Vesper and Nighthawk, software sepcifically for NFC IDs: github.com/RichardLitt/nfc-resources
+# Software
+* [Audacity](https://audacityteam.org) for editing: audacityteam.org
+* [Vesper](https://github.com/RichardLitt/nfc-resources) and Nighthawk, software sepcifically for NFC IDs. I've yet to try these.
