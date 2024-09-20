@@ -43,9 +43,9 @@
 
 # Books and Articles
 * [_The Singing Life of Birds: The Art and Science of Listening to Birdsong_](https://www.goodreads.com/book/show/6263.The_Singing_Life_of_Birds)
-* Textbook: _[The Migration Ecology of Birds]_(https://www.goodreads.com/book/show/2138419.The_Migration_Ecology_of_Birds)
-* Textbook: _[Bird Song: Biological Themes and Variations]_(https://www.goodreads.com/book/show/4579255-bird-song)
-* Interdisciplinary academic monograph: _[Listening in the Field: Recording and the Science of Birdsong]_(https://www.goodreads.com/book/show/36722601-listening-in-the-field)
+* Textbook: [_The Migration Ecology of Birds_](https://www.goodreads.com/book/show/2138419.The_Migration_Ecology_of_Birds)
+* Textbook: [_Bird Song: Biological Themes and Variations_](https://www.goodreads.com/book/show/4579255-bird-song)
+* Interdisciplinary academic monograph: [_Listening in the Field: Recording and the Science of Birdsong_](https://www.goodreads.com/book/show/36722601-listening-in-the-field)
 * ["Welcome to the Dark Side: Your Guide to Nocturnal Migration Birding"](https://www.audubon.org/magazine/spring-2022/welcome-dark-side-your-guide-nocturnal-migration), _Audubon Magazine_ (Spring 2022)
 * ["Here’s How You Go Birding in the Middle of the Night"](https://www.scientificamerican.com/podcast/episode/heres-how-you-go-birding-in-the-middle-of-the-night1/), _Scientific American_ (August 2023)
 * [Birding while you sleep: how to get started with noc-mig](https://www.birdguides.com/articles/general-birding/birding-while-you-sleep-how-to-get-started-with-noc-mig/), BirdGuides (June 2020)
