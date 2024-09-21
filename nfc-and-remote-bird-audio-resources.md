@@ -53,8 +53,9 @@ This document tracks bird sound resources, with an emphasis on nocturnal flight 
 * ["Here’s How You Go Birding in the Middle of the Night"](https://www.scientificamerican.com/podcast/episode/heres-how-you-go-birding-in-the-middle-of-the-night1/), _Scientific American_ (August 2023)
 * [Birding while you sleep: how to get started with noc-mig](https://www.birdguides.com/articles/general-birding/birding-while-you-sleep-how-to-get-started-with-noc-mig/), BirdGuides (June 2020)
 
-# Exemplary Recordings
-* Bill Evans (OldBird) ["Big Migration Night"](https://soundcloud.com/user-830174402/big-migration-night)
+# Exemplary Recordings from Bill Evans
+* ["Big Migration Night"](https://soundcloud.com/user-830174402/big-migration-night)
+* ["Big Migration Night - Harlingen, Texas, USA"](https://soundcloud.com/user-830174402/big-migration-night-harlingen-texas-usa)
 
 # People
 * [Bill Evans](https://scholar.google.com/citations?user=XoZ5lP0AAAAJ&hl=en&oi=sra)
