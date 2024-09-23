@@ -29,7 +29,7 @@ This document tracks bird sound resources, with an emphasis on nocturnal flight 
 
 # Software
 * [Audacity](https://audacityteam.org) for "viewing", listening to, and editing recordings
-* [Vesper](https://github.com/RichardLitt/nfc-resources) and Nighthawk, software specifically for analyzing long NFC recording sessions. I've yet to try these.
+* [Vesper](https://github.com/RichardLitt/nfc-resources) and Nighthawk, software specifically for analyzing long NFC recording sessions. I've just started with Nighthawk and am excited by it. It can analyze an audio file and generate a spreadsheet of bird sounds it has identified, including the timestamp of the sound and Nighthawk's best guess at the class and species. For Audacity users, Nighthawk can generate a label track -- labeling each sound on the audio track.
 * [Merlin](https://merlin.allaboutbirds.org/): the go-to bird sound ID app. Does not work well for NFCs.
 * [BirdNET API](https://birdnet.cornell.edu/api/): web-based bird sound ID. Unless you're using the API for other projects, consider this merely a backup option for Merlin, as its matches aren't filtered by date and location
 
