@@ -13,6 +13,11 @@ This document tracks bird sound resources, with an emphasis on nocturnal flight 
 # Recording setups at various price-points
 * See Nocturnal Flight Calls Facebook group below
 
+# My borrowed higher-quality recording equipment
+* [MixPre-3 preamp](https://www.sounddevices.com/product/mixpre-3/). This is a discontinued model. The current model is the [MixPre-3 II](https://www.sounddevices.com/product/mixpre-3-ii/)
+* (Shotgun mics. Need to add models]
+* [Zoom F1-SP](https://zoomcorp.com/en/us/field-recorders/field-recorders/f1-sp/)
+
 # Guides and Communities
 * [Nocturnal Flight Calls of North America](https://nocturnalflightcalls.com/): an online reference guide to nocturnal flight call spectrograms
 * [Peterson Field Guide to Bird Sounds of Eastern North America](https://harpercollins.com/products/peterson-field-guide-to-bird-sounds-of-eastern-north-america-nathan-pieplow). Includes an introduction on how to read spectrograms, and indexes for looking up species by sound qualities. There is an [online version](https://academy.allaboutbirds.org/peterson-field-guide-to-bird-sounds), but it is searchable only by species name, not by sound types or qualities.
