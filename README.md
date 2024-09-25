@@ -29,7 +29,11 @@ This collection tracks bird sound resources, with an emphasis on nocturnal fligh
 * [Flowchart](https://github.com/AndrewW-NFC/Bird-Audio-Resources/blob/main/Zeep%20flowchart%20-%20Landborough%20page%2012.jpg) for identifying the difficult "zeep" flight calls
 
 # Nocturnal Migration Forecasting and Alerts
-* [BirdCast migration tools](https://birdcast.info/migration-tools): Use to plan for good NFC nights and anticipate migrant species
+* [BirdCast migration tools](https://birdcast.info/migration-tools): Use to plan for good local NFC nights and anticipate migrant species. Migration alerts for nights of high predicted migration are active from March 1 until June 15 (spring migration) and August 1 until November 15 (fall migration).
+
+> [!NOTE]
+> * Alerts are available only for the continental United States
+> * The likelihood of a high migration night varies considerably by geography. For example, if you are in the northeastern U.S., even if alerts are active in August, you may not actually get your first alert until September.
 
 # The eBird NFC protocol
 * If you use eBird to track your observations, you should follow [its Nocturnal Flight Call Count protocol](https://support.ebird.org/en/support/solutions/articles/48000950859-guide-to-ebird-protocols#anchorNFC). Remember that eBird checklists ultimately feed into ornithological research; following protocols is thus essential for researchers to be sure they are analyzing data that have been collected in consistent ways. The NFC protocol differs from the more familiar ones. For example, since it's impossible to tally birds while they're migrating high in the dark, the NFC protocol asks you to count the _number of recorded calls_ and include those counts as species comments. 
