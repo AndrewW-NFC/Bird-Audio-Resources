@@ -29,11 +29,14 @@ A collection of bird audio resources, with an emphasis on nocturnal flight call 
 * [Flowchart](https://github.com/AndrewW-NFC/Bird-Audio-Resources/blob/main/Zeep%20flowchart%20-%20Landborough%20page%2012.jpg) for identifying the difficult "zeep" flight calls
 
 # Nocturnal Migration Forecasting and Alerts
-* [BirdCast migration tools](https://birdcast.info/migration-tools): Use to plan for good local NFC nights and anticipate migrant species. Migration alerts for nights of high predicted migration are active from March 1 until June 15 (spring migration) and August 1 until November 15 (fall migration).
+## [BirdCast migration tools](https://birdcast.info/migration-tools)
+Use these to help plan for good local NFC nights and to anticipate migrant species:
+* [Migration Alerts](https://birdcast.info/migration-tools/local-migration-alerts/) for nights of high predicted migration are active from March 1 until June 15 (spring migration) and August 1 until November 15 (fall migration).
+* The [Migration Dashboard](https://birdcast.info/migration-tools/migration-dashboard/) can help you anticipate which species will be passing through.
 
 > [!NOTE]
-> * Alerts are available only for the continental United States
-> * The likelihood of a high migration night varies considerably by geography. For example, if you are in the northeastern U.S., even if alerts are active in August, you may not actually get your first alert until September. Bear in mind, however, that waiting for high-migration nights may mean you miss early migrants, like many shorebird species.
+> * Migration alerts are available only for the continental United States.
+> * Alerts are triggered by high overall volume of migrants, regardless of species. This tends to be concentrated in mid-September to mid-October, but bear in mind many species -- especially shorebirds -- migrate earlier than that. If you want to focus on certain species, study their migration timing rather than rely on alerts.
 
 # The eBird NFC protocol
 * If you use eBird to track your observations, you should follow [its Nocturnal Flight Call Count protocol](https://support.ebird.org/en/support/solutions/articles/48000950859-guide-to-ebird-protocols#anchorNFC). Remember that eBird checklists ultimately feed into ornithological research; following protocols is essential for researchers to be confident data has been collected in consistent ways. The NFC protocol differs from the more familiar ones in eBird ("stationary", "traveling", and "incidental"). For example, since it's impossible to tally birds while they're flying overhead in the dark, the NFC protocol asks you to count the _number of recorded calls_ and include those counts as species comments. 
