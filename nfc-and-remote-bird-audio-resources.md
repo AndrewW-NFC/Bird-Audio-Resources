@@ -53,7 +53,7 @@ This document tracks bird sound resources, with an emphasis on nocturnal flight 
 * ["Welcome to the Dark Side: Your Guide to Nocturnal Migration Birding"](https://www.audubon.org/magazine/spring-2022/welcome-dark-side-your-guide-nocturnal-migration), _Audubon Magazine_ (Spring 2022)
 * ["Here’s How You Go Birding in the Middle of the Night"](https://www.scientificamerican.com/podcast/episode/heres-how-you-go-birding-in-the-middle-of-the-night1/), _Scientific American_ (August 2023)
 * [Birding while you sleep: how to get started with noc-mig](https://www.birdguides.com/articles/general-birding/birding-while-you-sleep-how-to-get-started-with-noc-mig/), BirdGuides (June 2020)
-* [Decoding the ‘zeep’ complex: quantitative analysis of interspecific variation in the nocturnal flight calls of nine wood warbler species (Parulidae spp.)](https://github.com/AndrewW-NFC/Bird-Audio-Resources/blob/main/Landsborough%20-%20Decoding%20the%20%E2%80%98zeep%E2%80%99%20complex.pdf), Landsborough et al.
+* ["Decoding the ‘zeep’ complex: quantitative analysis of interspecific variation in the nocturnal flight calls of nine wood warbler species (Parulidae spp.)"](https://github.com/AndrewW-NFC/Bird-Audio-Resources/blob/main/Landsborough%20-%20Decoding%20the%20%E2%80%98zeep%E2%80%99%20complex.pdf), Landsborough et al. in _Bioacoustics_
 
 # Exemplary Recordings
 Would like to find some in addition to Bill's.
