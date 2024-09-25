@@ -20,6 +20,7 @@ This document tracks bird sound resources, with an emphasis on nocturnal flight 
 * Reddit community: [r/fieldrecording](https://www.reddit.com/r/fieldrecording/). Not specific to bird sound recording but a good resource for recording equipment recommendations and technical advice.
 * ["AudioMoth: a practical guide to the open-source ARU"](https://github.com/rhine3/audiomoth-guide/blob/master/guide.md) (ARU = autonomous recording unit)
 * [Bill Evans' glossary of bird call terms](http://oldbird.org/pubs/fcmb/pages/glossary.htm)
+* Flowchart for identifying the difficult "zeep" flight calls
 
 # Nocturnal Migration Forecasting and Alerts
 * [BirdCast migration tools](https://birdcast.info/migration-tools): Use to plan for good NFC nights and anticipate migrant species
