@@ -14,9 +14,9 @@ This document tracks bird sound resources, with an emphasis on nocturnal flight 
 * See Nocturnal Flight Calls Facebook group below
 
 # My borrowed higher-quality recording equipment
-* [MixPre-3 preamp](https://www.sounddevices.com/product/mixpre-3/). This is a discontinued model. The current model is the [MixPre-3 II](https://www.sounddevices.com/product/mixpre-3-ii/)
+* [MixPre-3 preamp and recorder](https://www.sounddevices.com/product/mixpre-3/). This is a discontinued model. The current model is the [MixPre-3 II](https://www.sounddevices.com/product/mixpre-3-ii/)
 * (Shotgun mics. Need to add models]
-* [Zoom F1-SP](https://zoomcorp.com/en/us/field-recorders/field-recorders/f1-sp/)
+* [Zoom F1-SP](https://zoomcorp.com/en/us/field-recorders/field-recorders/f1-sp/) 
 
 # Guides and Communities
 * [Nocturnal Flight Calls of North America](https://nocturnalflightcalls.com/): an online reference guide to nocturnal flight call spectrograms
