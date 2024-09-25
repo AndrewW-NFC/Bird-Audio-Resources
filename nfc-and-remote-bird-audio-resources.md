@@ -17,7 +17,7 @@ This document tracks bird sound resources, with an emphasis on nocturnal flight 
 * [Zoom F1-SP](https://zoomcorp.com/en/us/field-recorders/field-recorders/f1-sp/) combo recorder and shotgun mic
 
 # Other recording setups at various price-points
-* See Nocturnal Flight Calls Facebook group below
+* See [Nocturnal Flight Calls Facebook group](https://www.facebook.com/groups/NocturnalFlightCalls/) below
 
 # Guides and Communities
 * [Nocturnal Flight Calls of North America](https://nocturnalflightcalls.com/): an online reference guide to nocturnal flight call spectrograms
