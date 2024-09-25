@@ -10,13 +10,14 @@ This document tracks bird sound resources, with an emphasis on nocturnal flight 
 * BirdWeather PUC: [birdweather.com](https://birdweather.com). Explore the 1,700+ BirdWeather stations, mostly in North America and Europe: [app.birdweather.com](https://app.birdweather.com). This device, which makes live identifications using the BirdNET API, is good for passive monintoring and recording of bird calls but has not proven effective for nocturnal flight calls. See "BirdNET API" below as to why.
 ## DIY (with a purchase option)
 * [OldBird 21c](http://oldbird.org)
-# Recording setups at various price-points
-* See Nocturnal Flight Calls Facebook group below
 
 # My borrowed higher-quality recording equipment
 * [MixPre-3 preamp and recorder](https://www.sounddevices.com/product/mixpre-3/). This is a discontinued model. The current model is the [MixPre-3 II](https://www.sounddevices.com/product/mixpre-3-ii/)
 * (Shotgun mics. Need to add models]
 * [Zoom F1-SP](https://zoomcorp.com/en/us/field-recorders/field-recorders/f1-sp/) combo recorder and shotgun mic
+
+# Other recording setups at various price-points
+* See Nocturnal Flight Calls Facebook group below
 
 # Guides and Communities
 * [Nocturnal Flight Calls of North America](https://nocturnalflightcalls.com/): an online reference guide to nocturnal flight call spectrograms
