@@ -15,6 +15,7 @@ A collection of bird audio resources, with an emphasis on nocturnal flight call 
 * [MixPre-3 preamp and recorder](https://www.sounddevices.com/product/mixpre-3/). This is a discontinued model. The current model is the [MixPre-3 II](https://www.sounddevices.com/product/mixpre-3-ii/)
 * Sennheiser ME 66 Supercardioid Shotgun Microphone ([PDF](https://assets.sennheiser.com/global-downloads/file/11897/SpecSheet_ME_66_EN.pdf))
 * [Zoom F1-SP](https://zoomcorp.com/en/us/field-recorders/field-recorders/f1-sp/) combo recorder and shotgun mic
+* (Power sources)
 
 # Other recording setups at various price-points
 * See [Nocturnal Flight Calls Facebook group](https://www.facebook.com/groups/NocturnalFlightCalls/) below
