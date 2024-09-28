@@ -29,7 +29,7 @@ A collection of bird audio resources, with an emphasis on nocturnal flight call 
 * [Flowchart](https://github.com/AndrewW-NFC/Bird-Audio-Resources/blob/main/Zeep%20flowchart%20-%20Landborough%20page%2012.jpg) for identifying the difficult "zeep" flight calls
 * Cornell Lab of Ornithology poster of warbler call spectrograms ([PDF](https://www.allaboutbirds.org/news/wp-content/uploads/2015/06/Rosetta_hires2.pdf)).
 > [!NOTE]
-> The Cornell poster shows typical calls, but actual recorded calls can differ slightly, particularly by frequency. The Nocturnal Flight Calls of North America link above shows good examples of how much calls can vary.
+> The Cornell poster shows typical calls, but actual recorded calls can differ slightly, particularly by frequency. The Nocturnal Flight Calls of North America link above shows good examples of how much a single species' calls can vary.
 
 # Nocturnal Migration Forecasting and Alerts
 ## BirdCast migration tools ([birdcast.info/migration-tools](https://birdcast.info/migration-tools))
