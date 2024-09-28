@@ -9,7 +9,7 @@ A collection of bird audio resources, with an emphasis on nocturnal flight call 
 * AudioMoth: [openacousticdevices.info/audiomoth](https://openacousticdevices.info/audiomoth).
 * BirdWeather PUC: [birdweather.com](https://birdweather.com). Explore the 1,700+ BirdWeather stations, mostly in North America and Europe: [app.birdweather.com](https://app.birdweather.com). This device, which makes live identifications using the BirdNET API, is good for passive monintoring and recording of bird calls but has not proven effective for nocturnal flight calls. See "BirdNET API" below as to why.
 ## DIY (with a purchase option)
-* [OldBird 21c](http://oldbird.org)
+* [OldBird 21c](http://oldbird.org), Bill Evans
 
 # My borrowed higher-quality recording equipment
 * [MixPre-3 preamp and recorder](https://www.sounddevices.com/product/mixpre-3/). This is a discontinued model. The current model is the [MixPre-3 II](https://www.sounddevices.com/product/mixpre-3-ii/). External power source recommended; four basic AA batteries last only about 45 minutes. [User guide PDF](https://images.thomann.de/pics/atg/atgdata/document/manual/436772_mixpre3_ug_en.pdf).
