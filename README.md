@@ -27,6 +27,9 @@ A collection of bird audio resources, with an emphasis on nocturnal flight call 
 * ["AudioMoth: a practical guide to the open-source ARU"](https://github.com/rhine3/audiomoth-guide/blob/master/guide.md) (ARU = autonomous recording unit)
 * [Bill Evans' glossary of bird call terms](http://oldbird.org/pubs/fcmb/pages/glossary.htm)
 * [Flowchart](https://github.com/AndrewW-NFC/Bird-Audio-Resources/blob/main/Zeep%20flowchart%20-%20Landborough%20page%2012.jpg) for identifying the difficult "zeep" flight calls
+* Cornell Lab of Ornithology poster of warbler call spectrograms ([PDF](https://www.allaboutbirds.org/news/wp-content/uploads/2015/06/Rosetta_hires2.pdf)).
+> [!NOTE]
+> The Cornell poster shows typical calls, but actual recorded calls can differ slightly, particularly by frequency. The Nocturnal Flight Calls of North America link above shows good examples of how much calls can vary.
 
 # Nocturnal Migration Forecasting and Alerts
 ## BirdCast migration tools ([birdcast.info/migration-tools](https://birdcast.info/migration-tools))
@@ -42,7 +45,7 @@ Use these to help plan for good local NFC nights and to anticipate migrant speci
 * If you use eBird to track your observations, you should follow [its Nocturnal Flight Call Count protocol](https://support.ebird.org/en/support/solutions/articles/48000950859-guide-to-ebird-protocols#anchorNFC). Remember that eBird checklists ultimately feed into ornithological research; following protocols is essential for researchers to be confident data has been collected in consistent ways. The NFC protocol differs from the more familiar ones in eBird ("stationary", "traveling", and "incidental"). For example, since it's impossible to tally birds while they're flying overhead in the dark, the NFC protocol asks you to count the _number of recorded calls_ and include those counts as species comments, not as bird counts, which should only be "X" for present.
 * Some recordists suggest keeping one second or more of audio before and after the call. This helps people who can (somehow!) identify NFCs by ear.  
 
-# Software
+# Software (all free)
 * [Audacity](https://audacityteam.org) for "viewing", listening to, and editing recordings
 * [Vesper](https://github.com/RichardLitt/nfc-resources) and [Nighthawk](https://github.com/bmvandoren/Nighthawk), software specifically for analyzing long NFC recording sessions. I've just started with Nighthawk and am excited by it. It can analyze an audio file and generate a spreadsheet of bird sounds it has identified, including the timestamp of the sound and Nighthawk's best guess at the class and species. For Audacity users, Nighthawk can generate a label track -- labeling each sound on the audio track and letting you bulk-export every sound as a separate file.
 > [!NOTE]
