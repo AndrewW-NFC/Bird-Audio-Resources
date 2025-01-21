@@ -1,4 +1,4 @@
-A collection of bird audio resources, with an emphasis on nocturnal flight call recording.
+A collection of bird audio resources. Emphasis on nocturnal flight call recording.
 
 * My eBird account for NFC/remote recordings: [Andrew W. - NFCs/Remote field audio](https://ebird.org/profile/NjIxMzM1Nw/world)
 * My uploaded NFC/remote recordings: [macaulaylibrary.org](https://search.macaulaylibrary.org/catalog?userId=USER6213357)
