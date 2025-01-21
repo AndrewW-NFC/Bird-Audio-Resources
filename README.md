@@ -6,7 +6,7 @@ A collection of bird audio resources. Emphasis on nocturnal flight call recordin
 
 # Low-cost recorders
 ## For purchase
-* [AudioMoth](https://openacousticdevices.info/audiomoth):.
+* [AudioMoth](https://openacousticdevices.info/audiomoth): A compact, programmable, long-battery-life device needing just three AAA batteries. Intended for omnidirectional nature recording deployments but can pick up NFCs. Has a weatherproof case option. A fun option for buying multiple recorders to survey a large area.
 * [BirdWeather PUC](https://birdweather.com): This device, which makes live identifications using the BirdNET API, is good for passive monintoring and recording of bird calls. It's not (yet at least) an option for nocturnal flight calls. See "BirdNET API" below as to why. It can be left plugged in or carried in the field on an accessory shoulder sling bag. Explore 1,700+ BirdWeather stations, mostly in North America and Europe: [app.birdweather.com](https://app.birdweather.com).
 ## DIY (with a purchase option)
 * [OldBird 21c](http://oldbird.org), Bill Evans
@@ -23,6 +23,7 @@ A collection of bird audio resources. Emphasis on nocturnal flight call recordin
 * [Peterson Field Guide to Bird Sounds of Eastern North America](https://harpercollins.com/products/peterson-field-guide-to-bird-sounds-of-eastern-north-america-nathan-pieplow). Includes an introduction on how to read spectrograms and indexes for looking up species by sound qualities. There is an [online version](https://academy.allaboutbirds.org/peterson-field-guide-to-bird-sounds), but it is searchable only by species name, not by sound types or qualities.
 * [Nocturnal Flight Calls of North America](https://nocturnalflightcalls.com/): an online reference guide to nocturnal flight call spectrograms
 * Facebook group ["Nocturnal Flight Calls"](https://www.facebook.com/groups/NocturnalFlightCalls/). Includes [a thread](https://www.facebook.com/groups/NocturnalFlightCalls/posts/10165508057595436/) about people's different NFC recording setups. The group is set to private, so you must submit a request to join and view content.
+* NFC Discord server: message me for an invite. There was interest in January 2025 of moving away from Facebook, so we'll see how much this grows.
 * Reddit community: [r/fieldrecording](https://www.reddit.com/r/fieldrecording/). Not specific to bird sound recording but a good resource for recording equipment recommendations and technical advice.
 * ["AudioMoth: a practical guide to the open-source ARU"](https://github.com/rhine3/audiomoth-guide/blob/master/guide.md) (ARU = autonomous recording unit)
 * [Bill Evans' glossary of bird call terms](http://oldbird.org/pubs/fcmb/pages/glossary.htm)
@@ -43,18 +44,18 @@ Use these to help plan for good local NFC nights and to anticipate migrant speci
 
 # The eBird NFC protocol
 * If you use eBird to track your observations, you should follow [its Nocturnal Flight Call Count protocol](https://support.ebird.org/en/support/solutions/articles/48000950859-guide-to-ebird-protocols#anchorNFC). Remember that eBird checklists ultimately feed into ornithological research; following protocols is essential for researchers to be confident data has been collected in consistent ways. The NFC protocol differs from the more familiar ones in eBird ("stationary", "traveling", and "incidental"). For example, since it's impossible to tally birds while they're flying overhead in the dark, the NFC protocol asks you to count the _number of recorded calls_ and include those counts as species comments, not as bird counts, which should only be "X" for present.
-* Some recordists suggest keeping one second or more of audio before and after the call. This helps people who can (somehow!) identify NFCs by ear.  
+* Some recordists suggest keeping one second or more of audio before and after the call. This helps people who can (somehow!) identify NFCs by ear.
 
 # Software (all free)
 * [Audacity](https://audacityteam.org) for "viewing", listening to, and editing recordings
-* [Vesper](https://github.com/RichardLitt/nfc-resources) and [Nighthawk](https://github.com/bmvandoren/Nighthawk), software specifically for analyzing long NFC recording sessions. I've just started with Nighthawk and am excited by it. It can analyze an audio file and generate a spreadsheet of bird sounds it has identified, including the timestamp of the sound and Nighthawk's best guess at the class and species. For Audacity users, Nighthawk can generate a label track -- labeling each sound on the audio track and letting you bulk-export every sound as a separate file.
+* [Vesper](https://github.com/RichardLitt/nfc-resources) and [Nighthawk](https://github.com/bmvandoren/Nighthawk), software specifically for analyzing long NFC recording sessions. Nighthawk can analyze an audio file and generate a spreadsheet of bird sounds it has identified, including the timestamp of the sound and Nighthawk's best guess at the class and species. For Audacity users, Nighthawk can generate a label track -- labeling each sound on the audio track and letting you bulk-export every sound as a separate file.
 > [!NOTE]
-  > Nighthawk is not designed to analyze songs. Its training data are calls. Don't bother trying to use it to analyze daytime singers.
+  > Nighthawk is not designed to analyze bird songs. Its training data are calls.
 * [Merlin](https://merlin.allaboutbirds.org/): the go-to bird sound ID app, but it is not suitable for NFCs.
 * [BirdNET API](https://birdnet.cornell.edu/api/): web-based bird sound ID. Unless you're using the API for other projects, consider this merely a backup option for Merlin, as its matches aren't filtered by date and location. It is not suitable for NFCs.
 
 > [!NOTE]
-> To emphasize: Merlin and BirdNET aren't well-trained on flight calls. They are well-trained for songs and "terrestrial" calls. Assume those platforms will not make positive flight call IDs.
+> Merlin and BirdNET aren't well-trained on flight calls that differ from "terrestial" calls. Though you might get lucky, assume those platforms will not make reliable (or any) flight call IDs.
 
 # Audio Repositories
 * The Macaulay Library, Cornell University. [This link](https://search.macaulaylibrary.org/catalog?mediaType=audio&tag=flight_call) takes you to a Macaulay search for flight calls, though not necessarily nocturnal flight calls. Keep an eye out for usernames that include "NFC", "NFC Station", etc.
@@ -77,7 +78,7 @@ Use these to help plan for good local NFC nights and to anticipate migrant speci
 * ["Decoding the ‘zeep’ complex: quantitative analysis of interspecific variation in the nocturnal flight calls of nine wood warbler species (Parulidae spp.)"](https://github.com/AndrewW-NFC/Bird-Audio-Resources/blob/main/Landsborough%20-%20Decoding%20the%20%E2%80%98zeep%E2%80%99%20complex.pdf), Landsborough et al. in _Bioacoustics_
 
 # Exemplary Recordings
-Would like to find some in addition to Bill's.
+(Would like to find some in addition to Bill's.)
 * ["Big Migration Night"](https://soundcloud.com/user-830174402/big-migration-night)
 * ["Big Migration Night - Harlingen, Texas, USA"](https://soundcloud.com/user-830174402/big-migration-night-harlingen-texas-usa)
 
