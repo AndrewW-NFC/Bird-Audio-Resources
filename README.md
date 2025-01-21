@@ -7,7 +7,7 @@ A collection of bird audio resources. Emphasis on nocturnal flight call recordin
 # Low-cost recorders
 ## For purchase
 * AudioMoth: [openacousticdevices.info/audiomoth](https://openacousticdevices.info/audiomoth).
-* BirdWeather PUC: [birdweather.com](https://birdweather.com). This device, which makes live identifications using the BirdNET API, is good for passive monintoring and recording of bird calls but has not proven effective for nocturnal flight calls. See "BirdNET API" below as to why. It can be left plugged in or carried in the field on an accessory shoulder sling bag. Explore 1,700+ BirdWeather stations, mostly in North America and Europe: [app.birdweather.com](https://app.birdweather.com).
+* BirdWeather PUC: [birdweather.com](https://birdweather.com). This device, which makes live identifications using the BirdNET API, is good for passive monintoring and recording of bird calls. It's not (yet at least) an option for nocturnal flight calls. See "BirdNET API" below as to why. It can be left plugged in or carried in the field on an accessory shoulder sling bag. Explore 1,700+ BirdWeather stations, mostly in North America and Europe: [app.birdweather.com](https://app.birdweather.com).
 ## DIY (with a purchase option)
 * [OldBird 21c](http://oldbird.org), Bill Evans
 
