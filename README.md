@@ -66,6 +66,8 @@ Use these to help plan for good local NFC nights and to anticipate migrant speci
 * [eBird quizzes](https://ebird.org/quiz): Location- and date-specific quizzes on all bird sounds, not just NFCs.
 
 # Books and Articles
+* [A call in the dark: Nocturnal flight calls and their potential to advance the study of avian migration](https://academic.oup.com/auk/advance-article/doi/10.1093/ornithology/ukaf002/7951360)
+* [Nighthawk: Acoustic monitoring of nocturnal bird migration in the Americas](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.14272)
 * [_The Singing Life of Birds: The Art and Science of Listening to Birdsong_](https://www.goodreads.com/book/show/6263.The_Singing_Life_of_Birds)
 * Textbook: [_The Migration Ecology of Birds_](https://www.goodreads.com/book/show/2138419.The_Migration_Ecology_of_Birds)
 * Textbook: [_Bird Song: Biological Themes and Variations_](https://www.goodreads.com/book/show/4579255-bird-song)
