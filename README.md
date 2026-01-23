@@ -63,7 +63,7 @@ Use these to help plan for good local NFC nights and to anticipate migrant speci
 * [Xeno-Canto](https://xeno-canto.org). [This link](https://xeno-canto.org/explore?query=type:%22nocturnal%20flight%20call%22) takes you to a Xeno-Canto search for nocturnal flight calls.
 
 > [!NOTE]
-> NFC folks in Europe tend to use [Trektellen](https://www.trektellen.org/), but as far as I know it is just for counts. It does not support audio uploads.
+> NFC folks in Europe tend to use [Trektellen](https://www.trektellen.org/). I need to explore it more but I don't think it supports direct audio uploads; rather, users to link to xeno-canto.
 
 # Skills Development
 * [Earbider](https://earbirder.com): Custom sound/sprectogram quizzes, including filtering by flight calls or NFC stations only
