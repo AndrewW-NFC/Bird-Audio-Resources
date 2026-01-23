@@ -61,6 +61,9 @@ Use these to help plan for good local NFC nights and to anticipate migrant speci
 * The Macaulay Library, Cornell University. [This link](https://search.macaulaylibrary.org/catalog?mediaType=audio&tag=flight_call) takes you to a Macaulay search for flight calls, though not necessarily nocturnal flight calls. Keep an eye out for usernames that include "NFC", "NFC Station", etc.
 * [Xeno-Canto](https://xeno-canto.org). [This link](https://xeno-canto.org/explore?query=type:%22nocturnal%20flight%20call%22) takes you to a Xeno-Canto search for nocturnal flight calls.
 
+> [!NOTE]
+> NFC folks in Europe tend to use [Trektellen](https://www.trektellen.org/), but as far as I know it is just for counts. It does not support audio uploads.
+
 # Skills Development
 * [Earbider](https://earbirder.com): Custom sound/sprectogram quizzes, including filtering by flight calls or NFC stations only
 * [eBird quizzes](https://ebird.org/quiz): Location- and date-specific quizzes on all bird sounds, not just NFCs.
