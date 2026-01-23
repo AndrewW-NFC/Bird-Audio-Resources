@@ -18,6 +18,7 @@ A collection of bird audio resources. Emphasis on nocturnal flight call recordin
 
 # Other recording setups at various price-points
 * See [Nocturnal Flight Calls Facebook group](https://www.facebook.com/groups/NocturnalFlightCalls/) below
+* Trektellen lists usually provide a description of the recording setup used, for example [this list from someone in Belgium](https://www.trektellen.org/count/view/984/20260118).
 
 # Guides and Communities
 * NFC Discord server: message me for an invite. This is a vibrant community during spring and fall migration, and quieter outside those windows, when conversation turns more torward hardware and "what if we tried..." questions.
