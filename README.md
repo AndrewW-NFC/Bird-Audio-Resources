@@ -1,11 +1,56 @@
-# Bird Audio Resources
+A collection of bird audio resources. Emphasis on nocturnal flight call recording.
 
-A curated guide to recording, identifying, and analyzing bird audio, with an emphasis on nocturnal flight calls.
+* My eBird account for NFC/remote recordings: [Andrew W. - NFCs/Remote field audio](https://ebird.org/profile/NjIxMzM1Nw/world)
+* My uploaded NFC/remote recordings: [macaulaylibrary.org](https://search.macaulaylibrary.org/catalog?userId=USER6213357)
+* Similar document: ["Bibliography of Nocturnal Flight Call Sources"](https://docs.google.com/document/d/1YaKaqGodIJnhLMBfQTJAxRnk9Cb4qoE4H1syjpL1Otg/edit?fbclid=IwY2xjawFa6aZleHRuA2FlbQIxMAABHbxYmn7XsiKwD7ot-3ie1P-bniEka6qCcxwdQRuaiORQHy7j4bTmYfiAmA_aem_-5hW-eN4yluYl_Hctfh3hw) assembled by Joe Gyekis and Julia Plummer
 
-=======
+# Low-cost recorders
+## For purchase
+* [AudioMoth](https://openacousticdevices.info/audiomoth): A compact, programmable, long-battery-life device needing just three AAA batteries. Intended for omnidirectional nature recording deployments but can pick up NFCs. Has a weatherproof case option. A fun option for buying multiple recorders to survey a large area.
+* [BirdWeather PUC](https://birdweather.com): This device, which makes live identifications using the BirdNET API, is good for passive monintoring and recording of bird calls. It's not (yet at least) an option for nocturnal flight calls. See "BirdNET API" below as to why. It can be left plugged in or carried in the field on an accessory shoulder sling bag. Explore 1,700+ BirdWeather stations, mostly in North America and Europe: [app.birdweather.com](https://app.birdweather.com).
+## DIY (formerly with a purchase option)
+* [OldBird 21c](http://oldbird.org), Bill Evans
+
+# My borrowed higher-quality recording equipment
+* [MixPre-3 preamp and recorder](https://www.sounddevices.com/product/mixpre-3/). (This is a discontinued model. The current model is the [MixPre-3 II](https://www.sounddevices.com/product/mixpre-3-ii/)). External power source recommended; four basic AA batteries last only about 45 minutes. Also note that it doesn't have a low-power shutoff, so if batteries run out, the file getting written at that time will be corrupted. [User guide PDF](https://images.thomann.de/pics/atg/atgdata/document/manual/436772_mixpre3_ug_en.pdf).
+* Sennheiser ME 66 Supercardioid Shotgun Microphone ([PDF](https://assets.sennheiser.com/global-downloads/file/11897/SpecSheet_ME_66_EN.pdf)). 
+* [Zoom F1-SP](https://zoomcorp.com/en/us/field-recorders/field-recorders/f1-sp/) combo recorder and shotgun mic
+
+# Other recording setups at various price-points
+* See [Nocturnal Flight Calls Facebook group](https://www.facebook.com/groups/NocturnalFlightCalls/) below
+* Trektellen lists usually provide a description of the recording setup used, for example [this list from someone in Belgium](https://www.trektellen.org/count/view/984/20260118).
+
+# Guides and Communities
+* NFC Discord server: message me for an invite. This is a vibrant community during spring and fall migration, and quieter outside those windows, when conversation turns more torward hardware and "what if we tried..." questions.
+* [Peterson Field Guide to Bird Sounds of Eastern North America](https://harpercollins.com/products/peterson-field-guide-to-bird-sounds-of-eastern-north-america-nathan-pieplow). Includes an introduction on how to read spectrograms and indexes for looking up species by sound qualities. There is an [online version](https://academy.allaboutbirds.org/peterson-field-guide-to-bird-sounds), but it is searchable only by species name, not by sound types or qualities.
+* [Nocturnal Flight Calls of North America](https://nocturnalflightcalls.com/): an online reference guide to nocturnal flight call spectrograms
+* Facebook group ["Nocturnal Flight Calls"](https://www.facebook.com/groups/NocturnalFlightCalls/). Includes [a thread](https://www.facebook.com/groups/NocturnalFlightCalls/posts/10165508057595436/) about people's different NFC recording setups. The group is set to private, so you must submit a request to join and view content.
+* Reddit community: [r/fieldrecording](https://www.reddit.com/r/fieldrecording/). Not specific to bird sound recording but a good resource for recording equipment recommendations and technical advice.
+* ["AudioMoth: a practical guide to the open-source ARU"](https://github.com/rhine3/audiomoth-guide/blob/master/guide.md) (ARU = autonomous recording unit)
+* [Bill Evans' glossary of bird call terms](http://oldbird.org/pubs/fcmb/pages/glossary.htm)
+* [Flowchart](https://github.com/AndrewW-NFC/Bird-Audio-Resources/blob/main/Zeep%20flowchart%20-%20Landborough%20page%2012.jpg) for identifying the difficult "zeep" flight calls
+* [eBird species codes](https://github.com/AndrewW-NFC/eBird-species-codes) (downloadable single HTML page)
+* Cornell Lab of Ornithology poster of warbler call spectrograms ([PDF](https://www.allaboutbirds.org/news/wp-content/uploads/2015/06/Rosetta_hires2.pdf)).
+> [!NOTE]
+> The Cornell poster shows typical calls, but actual recorded calls can differ slightly, particularly by frequency. How spectrograms appear can also be affected by weather and a bird's position relative to the microphone. That's one reason "zeeps" are so hard, because the mic might miss the front or end of a call. The Nocturnal Flight Calls of North America link above shows good examples of how much a single species' calls can vary.
+
+# Nocturnal Migration Forecasting and Alerts
+## BirdCast migration tools ([birdcast.info/migration-tools](https://birdcast.info/migration-tools))
+Use these to help plan for good local NFC nights and to anticipate migrant species. In particular:
+* [Migration Alerts](https://birdcast.info/migration-tools/local-migration-alerts/) for nights of high predicted migration are active from March 1 until June 15 (spring migration) and August 1 until November 15 (fall migration).
+* The [Migration Dashboard](https://birdcast.info/migration-tools/migration-dashboard/) can help you anticipate which species will be passing through.
+
+> [!NOTE]
+> * Migration alerts are available only for the continental United States.
+> * Alerts are triggered by high _overall numbers of migrants_, which happens most often in the middle of migration season. Some species, however, do not migrate in their largest numbers in that window. If you are interested in shorebirds, for example, you will want to try to record them in late summer, even though you won't be seeing migration alerts.
+
+# The eBird NFC protocol
+* If you use eBird to track your observations, you should follow [its Nocturnal Flight Call Count protocol](https://support.ebird.org/en/support/solutions/articles/48000950859-guide-to-ebird-protocols#anchorNFC). Remember that eBird checklists ultimately feed into ornithological research; following protocols is essential for researchers to be confident data has been collected in consistent ways. The NFC protocol differs from the more familiar ones in eBird ("stationary", "traveling", and "incidental"). For example, since it's impossible to tally birds while they're flying overhead in the dark, the NFC protocol asks you to count the _number of recorded calls_ and include those counts as species comments, not as bird counts, which should only be "X" for present.
+* Some recordists suggest keeping one second or more of audio before and after the call. This helps people who can (somehow!) identify NFCs by ear.
+
 # Code and Software (all free)
 * My AppleScript for [automating overnight recordings with Audition](https://github.com/AndrewW-NFC/Bird-Audio-Resources/blob/main/Audition%201-hour%20recordings%20with%20break%20at%20midnight%20and%20enrivonmental%20conditions.scpt). This code starts and stops Audition recordings every hour, with a special stop at midnight, all in order to follow eBird's NFC protocol. It saves each file using a filename that includes the start date and time. It also logs that hour's weather conditions. I'm still experimenting with how to add accurate local precipitation data to the log.
-* Generate a local recording quality forecast with [my Python script](https://github.com/AndrewW-NFC/Bird-Audio-Resources/blob/main/NFC%20quality%20weather%20forecast.py) or [my HTML(https://github.com/AndrewW-NFC/Bird-Audio-Resources/blob/main/nfc_recording_forecast_web.html)].
+* My Python script for [generating a local recording quality forecast](https://github.com/AndrewW-NFC/Bird-Audio-Resources/blob/main/NFC%20quality%20weather%20forecast.py).
 * [Audacity](https://audacityteam.org) for "viewing", listening to, and editing recordings
 * [Vesper](https://github.com/RichardLitt/nfc-resources) and [Nighthawk](https://github.com/bmvandoren/Nighthawk), software specifically for analyzing long NFC recording sessions. Nighthawk can analyze an audio file and generate a spreadsheet of bird sounds it has identified, including the timestamp of the sound and Nighthawk's best guess at the class and species. For Audacity users, Nighthawk can generate a label track -- labeling each sound on the audio track and letting you bulk-export every sound as a separate file.
 > [!NOTE]
@@ -50,4 +95,3 @@ A curated guide to recording, identifying, and analyzing bird audio, with an emp
 * [Bill Evans](https://scholar.google.com/citations?user=XoZ5lP0AAAAJ&hl=en&oi=sra)
 * [Benjamin Van Doren](https://www.migrationbiology.org)
 * [Joe Gyekis](https://www.youtube.com/user/jgyekis/playlists)
->>>>>>> parent of 9b24f54 (Update README.md)
