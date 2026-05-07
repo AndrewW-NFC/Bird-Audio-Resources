@@ -2,28 +2,6 @@
 
 A curated guide to recording, identifying, and analyzing bird audio, with an emphasis on nocturnal flight calls.
 
-## Start here
-
-- [Equipment](docs/equipment.md)
-- [Guides and communities](docs/guides-and-communities.md)
-- [Nocturnal migration forecasting](docs/forecasting.md)
-- [eBird NFC protocol](docs/nfc-protocol.md)
-- [Code and software](docs/software.md)
-- [Books and articles](docs/books-and-articles.md)
-
-## Tools in this repository
-
-- [Audition hourly recording script](tools/audition-hourly-recording/)
-- [NFC recording quality forecast](tools/nfc-recording-quality-forecast/)
-
-## Reference files
-
-Some PDFs and images are included for convenience or annotation. See [reference/](reference/).
-
-## License
-
-<<<<<<< HEAD
-MIT License.
 =======
 # Code and Software (all free)
 * My AppleScript for [automating overnight recordings with Audition](https://github.com/AndrewW-NFC/Bird-Audio-Resources/blob/main/Audition%201-hour%20recordings%20with%20break%20at%20midnight%20and%20enrivonmental%20conditions.scpt). This code starts and stops Audition recordings every hour, with a special stop at midnight, all in order to follow eBird's NFC protocol. It saves each file using a filename that includes the start date and time. It also logs that hour's weather conditions. I'm still experimenting with how to add accurate local precipitation data to the log.
