@@ -1,0 +1,1354 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NFC Recording Weather Forecast</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f7f7f4;
+      --panel: #ffffff;
+      --ink: #1f2933;
+      --muted: #5f6b76;
+      --line: #d9ddd8;
+      --accent: #2d6a4f;
+      --accent-2: #40916c;
+      --bad: #8a1f11;
+      --warn: #835c00;
+      --good: #1b6b38;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #101412;
+        --panel: #171d1a;
+        --ink: #edf2ef;
+        --muted: #aab5af;
+        --line: #2d3732;
+        --accent: #74c69d;
+        --accent-2: #95d5b2;
+        --bad: #ffb4a2;
+        --warn: #ffd166;
+        --good: #95d5b2;
+        --shadow: 0 10px 30px rgba(0,0,0,0.3);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.45;
+    }
+
+    header {
+      padding: 2rem 1rem 1rem;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 .5rem;
+      font-size: clamp(1.9rem, 3vw, 3rem);
+      line-height: 1.05;
+    }
+
+    h2 { margin: 0 0 1rem; }
+    h3 { margin: .25rem 0 .75rem; }
+    p { margin: .5rem 0; }
+    .lede { max-width: 820px; color: var(--muted); font-size: 1.05rem; }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .controls {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      align-items: start;
+      margin-bottom: 1rem;
+    }
+
+    .timezone-field .muted {
+      margin: .45rem 0 0;
+      line-height: 1.35;
+    }
+
+    @media (max-width: 860px) {
+      .controls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 560px) {
+      .controls { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: .35rem;
+    }
+
+    input, select, button {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: .75rem .8rem;
+      font: inherit;
+      background: color-mix(in srgb, var(--panel), var(--bg) 30%);
+      color: var(--ink);
+    }
+
+    button {
+      cursor: pointer;
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+      font-weight: 800;
+      transition: transform .08s ease, opacity .08s ease;
+    }
+
+    button:hover { opacity: .92; }
+    button:active { transform: translateY(1px); }
+    button.secondary {
+      background: transparent;
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    button:disabled { opacity: .5; cursor: not-allowed; }
+
+    .actions {
+      display: flex;
+      gap: .75rem;
+      flex-wrap: wrap;
+    }
+    .actions > * { flex: 1 1 180px; }
+
+    .status {
+      color: var(--muted);
+      min-height: 1.5rem;
+      margin: .5rem 0 1rem;
+    }
+
+    .summary {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .night-card {
+      display: grid;
+      gap: .6rem;
+    }
+
+    .badge-row {
+      display: flex;
+      gap: .5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: .25rem .65rem;
+      font-size: .85rem;
+      font-weight: 800;
+      background: color-mix(in srgb, var(--accent), transparent 84%);
+      color: var(--accent-2);
+      border: 1px solid color-mix(in srgb, var(--accent), transparent 60%);
+    }
+
+    .badge.observed, .observed-card .badge:first-child {
+      background: color-mix(in srgb, var(--muted), transparent 86%);
+      color: var(--ink);
+      border-color: color-mix(in srgb, var(--muted), transparent 45%);
+    }
+
+    .observed-card {
+      border-color: color-mix(in srgb, var(--muted), transparent 55%);
+    }
+
+    .location-resolved {
+      margin-top: .85rem;
+      color: var(--muted);
+    }
+
+    .section-block {
+      margin-top: 1rem;
+    }
+
+    .section-block[hidden] {
+      display: none;
+    }
+
+    .rec-yes { color: var(--good); }
+    .rec-borderline { color: var(--warn); }
+    .rec-no { color: var(--bad); }
+
+    .score {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -.03em;
+    }
+
+    .muted { color: var(--muted); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .95rem;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: .55rem .4rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th { color: var(--muted); font-size: .85rem; }
+
+    details {
+      border-top: 1px solid var(--line);
+      padding-top: .75rem;
+      margin-top: .75rem;
+    }
+
+    summary { cursor: pointer; font-weight: 800; color: var(--accent); }
+
+    pre {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      background: color-mix(in srgb, var(--panel), var(--bg) 55%);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1rem;
+      max-height: 620px;
+      overflow: auto;
+    }
+
+    .footer-note {
+      color: var(--muted);
+      font-size: .9rem;
+      padding: 1rem 0 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>NFC recording weather forecast</h1>
+    <p class="lede">Static, browser-only version of the nocturnal audio recording forecast script. It fetches public weather and twilight data directly from your browser, scores recording conditions, and lets you download TXT and JSON reports without a Python install.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Run forecast</h2>
+      <div class="grid controls">
+        <div>
+          <label for="latitude">Latitude</label>
+          <input id="latitude" type="number" step="0.000001" value="42.4206345" />
+        </div>
+        <div>
+          <label for="longitude">Longitude</label>
+          <input id="longitude" type="number" step="0.000001" value="-71.1804986" />
+        </div>
+        <div class="timezone-field">
+          <label for="timezone">Timezone</label>
+          <input id="timezone" type="text" value="auto" aria-describedby="tzHelp" />
+          <p id="tzHelp" class="muted">Use <strong>auto</strong> or an IANA value such as America/New_York.</p>
+        </div>
+        <div>
+          <label for="forecastDays">Forecast nights</label>
+          <select id="forecastDays">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+          </select>
+        </div>
+      </div>
+      <div class="actions" style="margin-top: 1rem;">
+        <button id="runBtn">Generate forecast</button>
+        <button class="secondary" id="downloadTxtBtn" disabled>Download TXT</button>
+        <button class="secondary" id="downloadJsonBtn" disabled>Download JSON</button>
+      </div>
+      <div id="locationResolved" class="location-resolved" aria-live="polite"></div>
+      <div id="status" class="status"></div>
+    </section>
+
+    <section id="forecastSection" class="section-block" aria-live="polite" hidden>
+      <h2>Forecasted conditions</h2>
+      <div id="forecastSummary" class="grid summary"></div>
+    </section>
+
+    <section id="observedSection" class="section-block" aria-live="polite" hidden>
+      <h2>Observed conditions</h2>
+      <div id="observedSummary" class="grid summary"></div>
+    </section>
+
+    <section id="detailSection" class="card" style="margin-top: 1rem; display: none;">
+      <h2>Plain-text report</h2>
+      <pre id="reportText"></pre>
+    </section>
+
+    <p class="footer-note">Notes: 10 m wind is from Open-Meteo; near-ground wind is estimated from the same profile as the Python script. Visibility is used when the API returns it, otherwise the app estimates visibility from precipitation and cloud cover. Night windows use astronomical twilight from sunrise-sunset.org.</p>
+  </main>
+
+  <script>
+    const MODEL_VERSION = "web-1.5.0";
+
+    const weights = {
+      "Surface Wind": 0.34,
+      "Precipitation": 0.24,
+      "Humidity": 0.14,
+      "Visibility": 0.12,
+      "Cloud Cover": 0.08,
+      "Pressure": 0.06,
+      "Temperature": 0.02,
+    };
+
+    const weightRationale = {
+      "Surface Wind": "wind noise can mask calls",
+      "Precipitation": "rain/sleet noise can directly mask calls",
+      "Humidity": "affects sound absorption",
+      "Visibility": "general proxy for atmospheric clarity",
+      "Cloud Cover": "may influence sound confinement",
+      "Pressure": "broad indicator of overnight stability",
+      "Temperature": "can affect mixing and stability",
+    };
+
+    const mainConcernHint = {
+      "Surface Wind": "wind noise risk",
+      "Precipitation": "rain noise risk",
+      "Humidity": "sound absorption risk",
+      "Visibility": "clarity/attenuation risk",
+      "Cloud Cover": "less favorable sound confinement pattern",
+      "Pressure": "less stable atmosphere may scatter and weaken distant calls",
+      "Temperature": "mixing/stability risk",
+    };
+
+    const referenceWindHeightM = 10.0;
+    const targetWindHeightM = 2.0;
+    const windShearExponent = 0.20;
+
+    let lastStructured = null;
+    let lastReport = "";
+    let lastBaseName = "NFC recording forecast";
+
+    const els = {
+      lat: document.getElementById("latitude"),
+      lon: document.getElementById("longitude"),
+      tz: document.getElementById("timezone"),
+      forecastDays: document.getElementById("forecastDays"),
+      runBtn: document.getElementById("runBtn"),
+      downloadTxtBtn: document.getElementById("downloadTxtBtn"),
+      downloadJsonBtn: document.getElementById("downloadJsonBtn"),
+      status: document.getElementById("status"),
+      locationResolved: document.getElementById("locationResolved"),
+      forecastSection: document.getElementById("forecastSection"),
+      observedSection: document.getElementById("observedSection"),
+      forecastSummary: document.getElementById("forecastSummary"),
+      observedSummary: document.getElementById("observedSummary"),
+      detailSection: document.getElementById("detailSection"),
+      reportText: document.getElementById("reportText"),
+    };
+
+    function setStatus(message) {
+      els.status.textContent = message;
+    }
+
+    function pad2(n) { return String(n).padStart(2, "0"); }
+
+    function localIso(dt) {
+      return `${dt.getFullYear()}-${pad2(dt.getMonth() + 1)}-${pad2(dt.getDate())}T${pad2(dt.getHours())}:${pad2(dt.getMinutes())}`;
+    }
+
+    function dateIso(dt) {
+      return `${dt.getFullYear()}-${pad2(dt.getMonth() + 1)}-${pad2(dt.getDate())}`;
+    }
+
+    function parseLocalDateTime(s) {
+      const [d, t] = s.split("T");
+      const [y, m, day] = d.split("-").map(Number);
+      const [hh, mm] = t.split(":").map(Number);
+      return new Date(y, m - 1, day, hh, mm || 0, 0, 0);
+    }
+
+    function addDays(dt, days) {
+      const d = new Date(dt);
+      d.setDate(d.getDate() + days);
+      return d;
+    }
+
+    function addHours(dt, hours) {
+      const d = new Date(dt);
+      d.setHours(d.getHours() + hours);
+      return d;
+    }
+
+    function floorHour(dt) {
+      const d = new Date(dt);
+      d.setMinutes(0, 0, 0);
+      return d;
+    }
+
+    function fmtDateTime(dt) {
+      return `${dateIso(dt)} ${pad2(dt.getHours())}:${pad2(dt.getMinutes())}`;
+    }
+
+    function fmtTime(dt) {
+      return `${pad2(dt.getHours())}:${pad2(dt.getMinutes())}`;
+    }
+
+    function mpsToMph(mps) { return mps * 2.237; }
+    function metersToMiles(meters) { return meters * 0.000621371; }
+    function celsiusToFahrenheit(c) { return (c * 9 / 5) + 32; }
+    function mmToInches(mm) { return mm / 25.4; }
+    function roundToHalf(x) { return Math.round(x * 2) / 2; }
+    function score100To10(score) { return roundToHalf(score / 10); }
+    function formatScore10(score) {
+      const val = score100To10(score);
+      return Math.abs(val - 10) < 1e-9 ? "10/10" : `${val.toFixed(1)}/10`;
+    }
+
+    function stars(filled) {
+      const n = Math.max(1, Math.min(5, filled));
+      return "⭐".repeat(n) + "⭐︎".repeat(5 - n);
+    }
+
+    function tierFromScore(score) {
+      if (score >= 90) return 5;
+      if (score >= 80) return 4;
+      if (score >= 70) return 3;
+      if (score >= 60) return 2;
+      return 1;
+    }
+
+    function formatFactorList(factors) {
+      if (!factors.length) return "minor factors";
+      if (factors.length === 1) return factors[0];
+      if (factors.length === 2) return `${factors[0]} and ${factors[1]}`;
+      return `${factors.slice(0, -1).join(", ")}, and ${factors[factors.length - 1]}`;
+    }
+
+    function topLimitingFactors(factors, maxN = 2) {
+      const penalties = Object.keys(weights).map(name => {
+        const score = factors[name]?.[0] ?? 100;
+        return [name, (100 - score) * weights[name]];
+      }).sort((a, b) => b[1] - a[1]);
+      const positive = penalties.filter(([, p]) => p > 0.1).map(([f]) => f);
+      return (positive.length ? positive : penalties.map(([f]) => f)).slice(0, maxN);
+    }
+
+    function recommendationLinesFromScoreAndFactors(overall, factors, historical = false) {
+      const tier = tierFromScore(overall);
+      const s = stars(tier);
+      const limiting1 = topLimitingFactors(factors, 1);
+      const limiting2 = topLimitingFactors(factors, 2);
+      let text;
+      if (!historical) {
+        if (tier === 5) text = "IDEAL - Expect clean audio for most or all of the night";
+        else if (tier === 4) text = `VERY GOOD - Expect clean audio for much of the night, with ${formatFactorList(limiting1).toLowerCase()} accounting for some limitations`;
+        else if (tier === 3) text = `FAIR - ${formatFactorList(limiting2)} will limit quality for much of the night`;
+        else if (tier === 2) text = `POOR - Recording quality will be severely affected by ${formatFactorList(limiting2)}`;
+        else text = "UNACCEPTABLE - Expect only noise";
+      } else {
+        if (tier === 5) text = "IDEAL - Clean audio was likely for most or all of the night";
+        else if (tier === 4) text = `VERY GOOD - Clean audio was likely for much of the night, with ${formatFactorList(limiting1).toLowerCase()} accounting for some limitations`;
+        else if (tier === 3) text = `FAIR - ${sentenceCase(formatFactorList(limiting2).toLowerCase())} limited quality for much of the night`;
+        else if (tier === 2) text = `POOR - Recording quality was severely affected by ${formatFactorList(limiting2).toLowerCase()}`;
+        else text = "UNACCEPTABLE - Conditions were likely dominated by noise";
+      }
+      return [s, text];
+    }
+
+    function sentenceCase(s) {
+      return s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+    }
+
+    function recommendationFlag(score) {
+      if (score >= 75) return "Yes";
+      if (score >= 60) return "Borderline";
+      return "No";
+    }
+
+    function forecastNightLabel(i) {
+      if (i === 1) return "Tonight";
+      if (i === 2) return "Tomorrow Night";
+      if (i === 3) return "Night Three";
+      return `Night ${i}`;
+    }
+
+    function historicalNightLabel(i) {
+      if (i === 1) return "Last Night";
+      if (i === 2) return "Two Nights Ago";
+      if (i === 3) return "Three Nights Ago";
+      return `${i} Nights Ago`;
+    }
+
+    function windToMps(value, unit) {
+      if (value == null) return 0;
+      const u = (unit || "").trim().toLowerCase().replace(/\s+/g, "");
+      if (["m/s", "ms", ""].includes(u)) return Number(value);
+      if (["km/h", "kmh"].includes(u)) return Number(value) / 3.6;
+      if (u === "mph") return Number(value) * 0.44704;
+      if (["kn", "kt", "knot", "knots"].includes(u)) return Number(value) * 0.514444;
+      return Number(value);
+    }
+
+    function sanitizeGust(windSpeedMps, gustSpeedMps) {
+      const maxReasonable = 22.4;
+      const multiplierMax = 2.0;
+      if (!gustSpeedMps || gustSpeedMps === 0) return windSpeedMps;
+      if (gustSpeedMps > maxReasonable) return maxReasonable;
+      if (windSpeedMps > 0 && gustSpeedMps > windSpeedMps * multiplierMax) return windSpeedMps * multiplierMax;
+      return gustSpeedMps;
+    }
+
+    function estimateGroundWind(wind10) {
+      if (wind10 <= 0) return 0;
+      const factor = Math.pow(targetWindHeightM / referenceWindHeightM, windShearExponent);
+      const est = wind10 * factor;
+      return Math.max(0, Math.min(est, wind10));
+    }
+
+    function estimateVisibility(precipMm, cloudPct) {
+      if (precipMm > 2) return 3000;
+      if (precipMm > 0.5) return 5000;
+      if (cloudPct > 80) return 7000;
+      return 10000;
+    }
+
+    async function fetchJson(url, params) {
+      const u = new URL(url);
+      Object.entries(params).forEach(([k, v]) => u.searchParams.set(k, v));
+      const res = await fetch(u.toString());
+      if (!res.ok) throw new Error(`${res.status} ${res.statusText}: ${await res.text()}`);
+      return res.json();
+    }
+
+    async function requestOpenMeteoJson(url, params) {
+      try {
+        return await fetchJson(url, params);
+      } catch (err) {
+        if (String(err.message).includes("400") && String(params.hourly).includes("visibility")) {
+          const fallback = { ...params, hourly: params.hourly.split(",").filter(v => v !== "visibility").join(",") };
+          return fetchJson(url, fallback);
+        }
+        throw err;
+      }
+    }
+
+    function parseHourlyPayload(data, isHistorical) {
+      const hourly = data.hourly || {};
+      const units = data.hourly_units || {};
+      const times = hourly.time || [];
+      const windUnit = units.wind_speed_10m || "m/s";
+      const gustUnit = units.wind_gusts_10m || windUnit;
+      const out = [];
+      for (let i = 0; i < times.length; i++) {
+        const temp = Number(hourly.temperature_2m?.[i] ?? 0);
+        const humidity = Number(hourly.relative_humidity_2m?.[i] ?? 0);
+        const wind10Raw = Number(hourly.wind_speed_10m?.[i] ?? 0);
+        const gust10Raw = Number(hourly.wind_gusts_10m?.[i] ?? 0);
+        const wind10 = windToMps(wind10Raw, windUnit);
+        const gust10 = sanitizeGust(wind10, windToMps(gust10Raw, gustUnit));
+        const windGround = estimateGroundWind(wind10);
+        const gustGround = sanitizeGust(windGround, estimateGroundWind(gust10));
+        const cloud = Number(hourly.cloud_cover?.[i] ?? 0);
+        const precip = Number(hourly.precipitation?.[i] ?? 0);
+        const pressure = Number(hourly.surface_pressure?.[i] ?? 1013);
+        const hasVisibility = hourly.visibility && hourly.visibility[i] != null;
+        const visibility = hasVisibility ? Number(hourly.visibility[i]) : estimateVisibility(precip, cloud);
+        out.push({
+          timestamp: parseLocalDateTime(times[i]),
+          temp,
+          humidity,
+          wind_speed_10m: wind10,
+          gust_speed_10m: gust10,
+          wind_speed_ground: windGround,
+          gust_speed_ground: gustGround,
+          cloud_cover: cloud,
+          precipitation: precip,
+          pressure,
+          visibility,
+          visibility_is_estimated: !hasVisibility,
+          conditions: cloud < 20 ? "Clear" : cloud < 80 ? "Cloudy" : "Overcast",
+          is_historical: isHistorical,
+        });
+      }
+      return out;
+    }
+
+    async function detectTimezoneName(lat, lon, tzInput) {
+      if (tzInput && tzInput.trim().toLowerCase() !== "auto") return tzInput.trim();
+      const data = await fetchJson("https://api.open-meteo.com/v1/forecast", {
+        latitude: lat,
+        longitude: lon,
+        current: "temperature_2m",
+        timezone: "auto",
+      });
+      return data.timezone || "America/New_York";
+    }
+
+    async function detectRegionName(lat, lon) {
+      const fallback = `${lat.toFixed(4)}, ${lon.toFixed(4)}`;
+
+      try {
+        const fcc = await fetchJson("https://geo.fcc.gov/api/census/block/find", {
+          latitude: lat,
+          longitude: lon,
+          format: "json",
+        });
+        const county = fcc.County?.name;
+        const state = fcc.State?.name;
+        if (county && state) return `${county}, ${state}`;
+        if (state) return state;
+        if (county) return county;
+      } catch (_) {
+        // Continue to global fallback.
+      }
+
+      try {
+        const osm = await fetchJson("https://nominatim.openstreetmap.org/reverse", {
+          lat,
+          lon,
+          format: "jsonv2",
+          addressdetails: 1,
+          zoom: 10,
+        });
+        const address = osm.address || {};
+        const region = address.county || address.state_district || address.region || address.municipality;
+        const state = address.state || address.province || address.territory;
+        if (region && state) return `${region}, ${state}`;
+        if (state) return state;
+        if (region) return region;
+      } catch (_) {
+        // Use coordinate fallback below.
+      }
+
+      return fallback;
+    }
+
+    async function fetchForecast(lat, lon, timezone, forecastDays) {
+      const params = {
+        latitude: lat,
+        longitude: lon,
+        hourly: "temperature_2m,relative_humidity_2m,wind_speed_10m,wind_gusts_10m,cloud_cover,precipitation,surface_pressure,visibility",
+        timezone,
+        forecast_days: Math.max(3, forecastDays),
+        windspeed_unit: "ms",
+        models: "best_match",
+      };
+      return parseHourlyPayload(await requestOpenMeteoJson("https://api.open-meteo.com/v1/forecast", params), false);
+    }
+
+    async function fetchHistorical(lat, lon, timezone, daysBack = 3) {
+      const end = addDays(new Date(), -1);
+      const start = addDays(end, -(daysBack - 1));
+      const params = {
+        latitude: lat,
+        longitude: lon,
+        start_date: dateIso(start),
+        end_date: dateIso(end),
+        hourly: "temperature_2m,relative_humidity_2m,wind_speed_10m,wind_gusts_10m,cloud_cover,precipitation,surface_pressure,visibility",
+        timezone,
+        windspeed_unit: "ms",
+      };
+      return parseHourlyPayload(await requestOpenMeteoJson("https://archive-api.open-meteo.com/v1/archive", params), true);
+    }
+
+    const twilightCache = new Map();
+    async function getTwilightForDate(lat, lon, d) {
+      const key = `${lat},${lon},${dateIso(d)}`;
+      if (twilightCache.has(key)) return twilightCache.get(key);
+      try {
+        const data = await fetchJson("https://api.sunrise-sunset.org/json", {
+          lat,
+          lng: lon,
+          date: dateIso(d),
+          formatted: 0,
+        });
+        if (data.status !== "OK") throw new Error(data.status || "Twilight API failed");
+        const dawn = new Date(data.results.astronomical_twilight_begin);
+        const dusk = new Date(data.results.astronomical_twilight_end);
+        const out = { dawn, dusk };
+        twilightCache.set(key, out);
+        return out;
+      } catch (err) {
+        const fallback = {
+          dawn: new Date(d.getFullYear(), d.getMonth(), d.getDate(), 5, 30),
+          dusk: new Date(d.getFullYear(), d.getMonth(), d.getDate(), 20, 0),
+        };
+        twilightCache.set(key, fallback);
+        return fallback;
+      }
+    }
+
+    const nightWindowCache = new Map();
+    async function twilightWindowForEvening(lat, lon, eveningDate) {
+      const key = `${lat},${lon},${dateIso(eveningDate)}`;
+      if (nightWindowCache.has(key)) return nightWindowCache.get(key);
+      const dusk = (await getTwilightForDate(lat, lon, eveningDate)).dusk;
+      const dawnNext = (await getTwilightForDate(lat, lon, addDays(eveningDate, 1))).dawn;
+      let start = floorHour(dusk);
+      let end = floorHour(dawnNext);
+      if (end <= start) end = new Date(eveningDate.getFullYear(), eveningDate.getMonth(), eveningDate.getDate() + 1, 5, 0);
+      const out = [start, end];
+      nightWindowCache.set(key, out);
+      return out;
+    }
+
+    async function metricToNightKey(lat, lon, ts) {
+      const candidates = [new Date(ts.getFullYear(), ts.getMonth(), ts.getDate()), addDays(new Date(ts.getFullYear(), ts.getMonth(), ts.getDate()), -1)];
+      for (const eve of candidates) {
+        const [start, end] = await twilightWindowForEvening(lat, lon, eve);
+        if (ts >= start && ts <= end) return dateIso(eve);
+      }
+      return null;
+    }
+
+    function scoreWind(windGround, gustGround, wind10, gust10) {
+      const windMph = mpsToMph(windGround);
+      const gustMph = mpsToMph(gustGround);
+      const wind10Mph = mpsToMph(wind10);
+      const gust10Mph = mpsToMph(gust10);
+      let score, explanation;
+      if (windGround < 1.5) [score, explanation] = [100, `Perfect - near-silent (${windMph.toFixed(1)} mph; ${wind10Mph.toFixed(1)} mph @10m)`];
+      else if (windGround < 3) [score, explanation] = [95, `Very good - very calm (${windMph.toFixed(1)} mph; ${wind10Mph.toFixed(1)} mph @10m)`];
+      else if (windGround < 4.5) [score, explanation] = [85, `Very good - light breeze (${windMph.toFixed(1)} mph; ${wind10Mph.toFixed(1)} mph @10m)`];
+      else if (windGround < 6) [score, explanation] = [70, `Good - moderate wind (${windMph.toFixed(1)} mph; ${wind10Mph.toFixed(1)} mph @10m)`];
+      else if (windGround < 8) [score, explanation] = [45, `Fair - windy (${windMph.toFixed(1)} mph; ${wind10Mph.toFixed(1)} mph @10m)`];
+      else [score, explanation] = [10, `Poor - heavy wind (${windMph.toFixed(1)} mph; ${wind10Mph.toFixed(1)} mph @10m)`];
+
+      if (gustGround >= 22.4) {
+        score *= 0.6;
+        explanation += " (gusts 50+ mph)";
+      } else if (gustGround > 7) {
+        score *= 0.8;
+        explanation += ` (gusts ${gustMph.toFixed(1)} mph; ${gust10Mph.toFixed(1)} mph @10m)`;
+      }
+      return [score, explanation];
+    }
+
+    function scoreHumidity(h) {
+      if (68 <= h && h <= 75) return [95, `Very good - optimal humidity (${h}% RH)`];
+      if (75 < h && h <= 85) return [95 - ((h - 75) * 1.5), `Very good - acceptable humidity (${h}% RH)`];
+      if (85 < h && h <= 92) return [75 - ((h - 85) * 1.5), `Fair - humid (${h}% RH)`];
+      if (h > 92) return [40, `Poor - very humid (${h}% RH)`];
+      return [60, `Poor - unusually dry (${h}% RH)`];
+    }
+
+    function scoreVisibility(v) {
+      const mi = metersToMiles(v);
+      if (v >= 10000) return [95, `Very good - clear visibility (${mi.toFixed(1)} mi)`];
+      if (v >= 8000) return [90, `Very good - excellent visibility (${mi.toFixed(1)} mi)`];
+      if (v >= 6000) return [80, `Good - clear conditions (${mi.toFixed(1)} mi)`];
+      if (v >= 4000) return [65, `Fair - some haze (${mi.toFixed(1)} mi)`];
+      if (v >= 2000) return [40, `Poor - limited visibility (${mi.toFixed(1)} mi)`];
+      return [10, `Very poor - fog/haze (${mi.toFixed(1)} mi)`];
+    }
+
+    function scoreCloudCover(c) {
+      if (c >= 80) return [95, `Very good - heavy overcast (${c}%)`];
+      if (c >= 70) return [92, `Very good - mostly cloudy (${c}%)`];
+      if (c >= 50) return [85, `Very good - broken clouds (${c}%)`];
+      if (c >= 30) return [75, `Good - partly cloudy (${c}%)`];
+      if (c >= 10) return [65, `Fair - mostly clear (${c}%)`];
+      return [55, `Fair - clear sky (${c}%)`];
+    }
+
+    function scorePressure(p) {
+      if (p >= 1025) return [100, `Perfect - very high pressure (${p.toFixed(1)} hPa)`];
+      if (p >= 1020) return [95, `Very good - high pressure (${p.toFixed(1)} hPa)`];
+      if (p >= 1015) return [88, `Very good - elevated pressure (${p.toFixed(1)} hPa)`];
+      if (p >= 1010) return [75, `Good - moderate pressure (${p.toFixed(1)} hPa)`];
+      if (p >= 1005) return [55, `Fair - low pressure (${p.toFixed(1)} hPa)`];
+      return [30, `Poor - very low pressure (${p.toFixed(1)} hPa)`];
+    }
+
+    function scorePrecipitation(p) {
+      const inches = mmToInches(p);
+      if (p === 0) return [100, "Perfect - no precipitation"];
+      if (p < 0.5) return [85, `Very good - trace/light precipitation (${inches.toFixed(2)} in)`];
+      if (p < 1) return [70, `Good - light rain (${inches.toFixed(2)} in)`];
+      if (p < 3) return [45, `Fair - moderate rain (${inches.toFixed(2)} in)`];
+      return [15, `Poor - heavy rain (${inches.toFixed(2)} in)`];
+    }
+
+    function scoreTemperature(t) {
+      const f = celsiusToFahrenheit(t);
+      if (5 <= t && t <= 15) return [90, `Very good - cool/moderate (${f.toFixed(0)}°F)`];
+      if ((3 <= t && t < 5) || (15 < t && t <= 20)) return [85, `Very good - stable-friendly (${f.toFixed(0)}°F)`];
+      if ((0 <= t && t < 3) || (20 < t && t <= 25)) return [75, `Good - acceptable (${f.toFixed(0)}°F)`];
+      if (25 < t && t <= 28) return [55, `Fair - warm/less stable (${f.toFixed(0)}°F)`];
+      return [40, `Poor - ${t < 0 ? "very cold" : "hot"} (${f.toFixed(0)}°F)`];
+    }
+
+    function analyzeForecast(weather) {
+      const factors = {
+        "Surface Wind": scoreWind(weather.wind_speed_ground, weather.gust_speed_ground, weather.wind_speed_10m, weather.gust_speed_10m),
+        "Precipitation": scorePrecipitation(weather.precipitation),
+        "Humidity": scoreHumidity(weather.humidity),
+        "Visibility": scoreVisibility(weather.visibility),
+        "Cloud Cover": scoreCloudCover(weather.cloud_cover),
+        "Pressure": scorePressure(weather.pressure),
+        "Temperature": scoreTemperature(weather.temp),
+      };
+      const overall = Object.keys(weights).reduce((sum, k) => sum + factors[k][0] * weights[k], 0);
+      return { overall_score: overall, factors };
+    }
+
+    function formatRange(vals, decimals = 0) {
+      const lo = Math.min(...vals);
+      const hi = Math.max(...vals);
+      const loR = Number(lo.toFixed(decimals));
+      const hiR = Number(hi.toFixed(decimals));
+      const fmt = v => decimals === 0 ? String(Math.round(v)) : v.toFixed(decimals);
+      return loR === hiR ? fmt(loR) : `${fmt(loR)}-${fmt(hiR)}`;
+    }
+
+    function humidityLabel(rh) {
+      if (rh >= 90) return "Very humid";
+      if (rh >= 80) return "Humid";
+      if (rh >= 65) return "Moderate";
+      return "Dry";
+    }
+
+    function visibilityLabelAndTip(miles) {
+      if (miles >= 6) return ["Clear", "excellent clarity and distance"];
+      if (miles >= 3) return ["Good", "good clarity for most recordings"];
+      if (miles >= 1.5) return ["Limited", "some attenuation; prioritize nearby sounds"];
+      return ["Poor", "significant attenuation; recording quality likely reduced"];
+    }
+
+    function cloudLabel(c) {
+      if (c < 20) return "clear";
+      if (c < 50) return "partly cloudy";
+      if (c < 80) return "mostly cloudy";
+      return "overcast";
+    }
+
+    function labelSpan(labels, ordered) {
+      const present = [...new Set(labels.map(l => ordered.indexOf(l)).filter(i => i >= 0))].sort((a, b) => a - b);
+      if (!present.length) return "Variable";
+      if (present.length === 1) return ordered[present[0]];
+      return `${ordered[present[0]]} to ${ordered[present[present.length - 1]]}`;
+    }
+
+    function countTransitions(labels) {
+      let count = 0;
+      for (let i = 1; i < labels.length; i++) if (labels[i] !== labels[i - 1]) count++;
+      return count;
+    }
+
+    function pressureDescription(values) {
+      const avg = values.reduce((a, b) => a + b, 0) / values.length;
+      const delta = values[values.length - 1] - values[0];
+      const span = Math.max(...values) - Math.min(...values);
+      const level = avg >= 1022 ? "High pressure" : avg >= 1010 ? "Moderate pressure" : "Low pressure";
+      const trend = delta >= 1.5 ? "rising" : delta <= -1.5 ? "falling" : "steady";
+      const variability = span <= 1.5 ? "very stable overnight" : span <= 3.5 ? "fairly stable overnight" : "more variable overnight";
+      return `${level}, ${trend}, ${variability} (${Math.min(...values).toFixed(1)}-${Math.max(...values).toFixed(1)} hPa; net ${delta >= 0 ? "+" : ""}${delta.toFixed(1)} hPa)`;
+    }
+
+    function summarizeNightConditions(night) {
+      const weather = night.all_forecasts.map(r => r.weather);
+      const windMph = weather.map(w => mpsToMph(w.wind_speed_ground));
+      const gustMph = weather.map(w => mpsToMph(w.gust_speed_ground));
+      const humidityVals = weather.map(w => w.humidity);
+      const visMiles = weather.map(w => metersToMiles(w.visibility));
+      const cloudVals = weather.map(w => w.cloud_cover);
+      const pressureVals = weather.map(w => w.pressure);
+      const tempF = weather.map(w => celsiusToFahrenheit(w.temp));
+      const precipTotalMm = weather.reduce((sum, w) => sum + w.precipitation, 0);
+      const humiditySpan = labelSpan(humidityVals.map(humidityLabel), ["Very humid", "Humid", "Moderate", "Dry"]);
+      const visPairs = visMiles.map(visibilityLabelAndTip);
+      const visLabels = visPairs.map(x => x[0]);
+      const visTips = visPairs.map(x => x[1]);
+      let visDesc, visTip;
+      if (new Set(visLabels).size === 1) {
+        visDesc = visLabels[0];
+        visTip = visTips[0];
+      } else if (countTransitions(visLabels) >= 2) {
+        visDesc = "Variable";
+        visTip = "conditions fluctuate through the night";
+      } else {
+        visDesc = labelSpan(visLabels, ["Poor", "Limited", "Good", "Clear"]);
+        visTip = visTips.includes("significant attenuation; recording quality likely reduced") ? "poorer periods may reduce clarity" : "generally favorable for recording";
+      }
+      const cloudLabels = cloudVals.map(cloudLabel);
+      let cloudDesc = new Set(cloudLabels).size === 1
+        ? `${sentenceCase(cloudLabels[0])} throughout`
+        : `Going from ${cloudLabels[0]} to ${cloudLabels[cloudLabels.length - 1]}${countTransitions(cloudLabels) >= 2 ? " (variable in between)" : ""}`;
+      return {
+        "Surface Wind": `${formatRange(windMph, 1)} mph (max gust ${Math.max(...gustMph).toFixed(1)} mph)`,
+        "Humidity": `${humiditySpan} (${formatRange(humidityVals, 0)}% RH)`,
+        "Visibility": `${visDesc} (${formatRange(visMiles, 1)} mi); ${visTip}`,
+        "Cloud Cover": `${cloudDesc} (${formatRange(cloudVals, 0)}%)`,
+        "Pressure": pressureDescription(pressureVals),
+        "Temperature": `${formatRange(tempF, 0)}°F`,
+        "Total Precipitation": `${mmToInches(precipTotalMm).toFixed(2)} in (${precipTotalMm.toFixed(1)} mm)`,
+      };
+    }
+
+    function factorAveragesForNight(night) {
+      const out = {};
+      for (const k of Object.keys(weights)) {
+        const vals = night.all_forecasts.map(row => row.score.factors[k][0]);
+        out[k] = vals.reduce((a, b) => a + b, 0) / vals.length;
+      }
+      return out;
+    }
+
+    function mainConcern(night) {
+      const fa = factorAveragesForNight(night);
+      const penalties = {};
+      for (const k of Object.keys(weights)) penalties[k] = (100 - fa[k]) * weights[k];
+      const worst = Object.keys(penalties).sort((a, b) => penalties[b] - penalties[a])[0];
+      return `${worst} (${mainConcernHint[worst] || "primary risk"})`;
+    }
+
+    function peakWindow(night, margin = 5) {
+      const rows = [...night.all_forecasts].sort((a, b) => a.time - b.time);
+      if (!rows.length) return [night.best_time, night.best_time];
+      const bestScore = Math.max(...rows.map(r => r.score.overall_score));
+      const threshold = bestScore - margin;
+      const bestTime = night.best_time;
+      const qualified = rows.filter(r => r.score.overall_score >= threshold).map(r => r.time);
+      if (!qualified.length) return [bestTime, bestTime];
+      const groups = [];
+      let current = [qualified[0]];
+      for (let i = 1; i < qualified.length; i++) {
+        if (qualified[i] - qualified[i - 1] === 3600000) current.push(qualified[i]);
+        else { groups.push(current); current = [qualified[i]]; }
+      }
+      groups.push(current);
+      const containing = groups.find(g => g.some(t => t.getTime() === bestTime.getTime()));
+      const chosen = containing || groups.sort((a, b) => b.length - a.length)[0];
+      return [chosen[0], chosen[chosen.length - 1]];
+    }
+
+    function checkHourlyContiguity(timestamps) {
+      if (timestamps.length <= 1) return [true, []];
+      const sorted = [...timestamps].sort((a, b) => a - b);
+      const gaps = [];
+      for (let i = 1; i < sorted.length; i++) {
+        if (sorted[i] - sorted[i - 1] !== 3600000) gaps.push([sorted[i - 1], sorted[i]]);
+      }
+      return [gaps.length === 0, gaps];
+    }
+
+    async function analyzeNightWindows(lat, lon, metrics, reverseChronological = false) {
+      const windows = new Map();
+      for (const m of metrics) {
+        const key = await metricToNightKey(lat, lon, m.timestamp);
+        if (key) {
+          if (!windows.has(key)) windows.set(key, []);
+          windows.get(key).push(m);
+        }
+      }
+      const keys = [...windows.keys()].sort();
+      if (reverseChronological) keys.reverse();
+      const nights = [];
+      for (const key of keys) {
+        const [y, mo, da] = key.split("-").map(Number);
+        const evening = new Date(y, mo - 1, da);
+        const [twStart, twEnd] = await twilightWindowForEvening(lat, lon, evening);
+        const rows = windows.get(key).filter(w => w.timestamp >= twStart && w.timestamp <= twEnd).sort((a, b) => a.timestamp - b.timestamp);
+        if (!rows.length) continue;
+        const scored = rows.map(w => ({ time: w.timestamp, score: analyzeForecast(w), weather: w }));
+        const avg = scored.reduce((sum, r) => sum + r.score.overall_score, 0) / scored.length;
+        const best = scored.reduce((a, b) => b.score.overall_score > a.score.overall_score ? b : a, scored[0]);
+        const worst = scored.reduce((a, b) => b.score.overall_score < a.score.overall_score ? b : a, scored[0]);
+        const times = scored.map(r => r.time);
+        const [contiguous, gaps] = checkHourlyContiguity(times);
+        const night = {
+          night_date: key,
+          twilight_start: twStart,
+          twilight_end: twEnd,
+          window_start: times[0],
+          window_end: times[times.length - 1],
+          is_contiguous: contiguous,
+          gaps,
+          hours_count: times.length,
+          average_score: avg,
+          best_time: best.time,
+          least_favorable_time: worst.time,
+          best_condition_score: best.score,
+          all_forecasts: scored,
+        };
+        const [peakStart, peakEnd] = peakWindow(night);
+        night.peak_start = peakStart;
+        night.peak_end = peakEnd;
+        night.deploy_by = addHours(peakStart, -1);
+        night.main_concern = mainConcern(night);
+        nights.push(night);
+      }
+      return nights;
+    }
+
+    async function nextEveningAnchor(lat, lon) {
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const [tonightStart] = await twilightWindowForEvening(lat, lon, today);
+      if (now < tonightStart) return tonightStart;
+      const [tomorrowStart] = await twilightWindowForEvening(lat, lon, addDays(today, 1));
+      return tomorrowStart;
+    }
+
+    async function getBestNights(lat, lon, forecasts, daysAhead) {
+      const nights = await analyzeNightWindows(lat, lon, forecasts, false);
+      const anchor = await nextEveningAnchor(lat, lon);
+      return nights.filter(n => n.twilight_start >= anchor).slice(0, daysAhead);
+    }
+
+    async function getHistoricalNights(lat, lon, historical, daysBack = 3) {
+      const nights = await analyzeNightWindows(lat, lon, historical, true);
+      return nights.slice(0, daysBack);
+    }
+
+    function serializeWeather(w) {
+      return {
+        timestamp: localIso(w.timestamp),
+        temp_c: w.temp,
+        temp_f: Number(celsiusToFahrenheit(w.temp).toFixed(1)),
+        humidity_pct: w.humidity,
+        wind_speed_10m_mps: w.wind_speed_10m,
+        wind_speed_10m_mph: Number(mpsToMph(w.wind_speed_10m).toFixed(1)),
+        gust_speed_10m_mps: w.gust_speed_10m,
+        gust_speed_10m_mph: Number(mpsToMph(w.gust_speed_10m).toFixed(1)),
+        wind_speed_ground_mps: w.wind_speed_ground,
+        wind_speed_ground_mph: Number(mpsToMph(w.wind_speed_ground).toFixed(1)),
+        gust_speed_ground_mps: w.gust_speed_ground,
+        gust_speed_ground_mph: Number(mpsToMph(w.gust_speed_ground).toFixed(1)),
+        cloud_cover_pct: w.cloud_cover,
+        precipitation_mm: w.precipitation,
+        precipitation_in: Number(mmToInches(w.precipitation).toFixed(3)),
+        pressure_hpa: w.pressure,
+        visibility_m: w.visibility,
+        visibility_mi: Number(metersToMiles(w.visibility).toFixed(2)),
+        visibility_is_estimated: w.visibility_is_estimated,
+        conditions: w.conditions,
+        is_historical: w.is_historical,
+      };
+    }
+
+    function recommendationLinesForNight(night, historical = false) {
+      const fa = factorAveragesForNight(night);
+      const factorDict = {};
+      for (const k of Object.keys(weights)) factorDict[k] = [fa[k] ?? 100, ""];
+      return recommendationLinesFromScoreAndFactors(night.average_score, factorDict, historical);
+    }
+
+    function serializeNight(night, label, type) {
+      const [s, labelText] = recommendationLinesForNight(night, type === "historical");
+      const factorAvgs = factorAveragesForNight(night);
+      const factorAvgsSerialized = {};
+      for (const [k, v] of Object.entries(factorAvgs)) {
+        factorAvgsSerialized[k] = { score_100: Number(v.toFixed(2)), score_10: score100To10(v) };
+      }
+      const bestHourFactors = {};
+      for (const [k, v] of Object.entries(night.best_condition_score.factors)) {
+        bestHourFactors[k] = { score_100: Number(v[0].toFixed(2)), score_10: score100To10(v[0]), explanation: v[1] };
+      }
+      return {
+        type,
+        label,
+        window_start: localIso(night.window_start),
+        window_end: localIso(night.window_end),
+        twilight_start: localIso(night.twilight_start),
+        twilight_end: localIso(night.twilight_end),
+        average_score_100: Number(night.average_score.toFixed(2)),
+        average_score_10: score100To10(night.average_score),
+        stars: s,
+        recommendation_text: labelText,
+        recommended: recommendationFlag(night.average_score),
+        best_time: fmtTime(night.best_time),
+        least_favorable_time: fmtTime(night.least_favorable_time),
+        peak_start: fmtTime(night.peak_start),
+        peak_end: fmtTime(night.peak_end),
+        deploy_by: fmtTime(night.deploy_by),
+        main_concern: night.main_concern,
+        hours_count: night.hours_count,
+        visibility_estimated_any: night.all_forecasts.some(row => row.weather.visibility_is_estimated),
+        night_conditions_summary: summarizeNightConditions(night),
+        factor_averages: factorAvgsSerialized,
+        best_hour_factor_scores: bestHourFactors,
+        hourly: night.all_forecasts.map(row => ({
+          timestamp: localIso(row.time),
+          overall_score_100: Number(row.score.overall_score.toFixed(2)),
+          overall_score_10: score100To10(row.score.overall_score),
+          weather: serializeWeather(row.weather),
+        })),
+      };
+    }
+
+    function generateStructuredOutput(lat, lon, timezone, regionName, forecastNights, historicalNights) {
+      return {
+        model_version: MODEL_VERSION,
+        generated_at: localIso(new Date()),
+        location: { latitude: lat, longitude: lon, region_state_name: regionName, timezone },
+        units: {
+          wind: { primary: "m/s", display: "mph" },
+          temperature: { primary: "C", display: "F" },
+          visibility: { primary: "m", display: "mi" },
+          precipitation: { primary: "mm", display: "in" },
+          pressure: "hPa",
+          humidity: "%",
+          scores_internal: "0-100",
+          scores_display: "0-10",
+        },
+        weights,
+        weight_rationale: weightRationale,
+        forecast_nights: forecastNights.map((night, i) => serializeNight(night, forecastNightLabel(i + 1), "forecast")),
+        historical_nights: historicalNights.map((night, i) => serializeNight(night, historicalNightLabel(i + 1), "historical")),
+      };
+    }
+
+    function decisionSummaryLine(label, night) {
+      const [s] = recommendationLinesForNight(night, false);
+      const rec = recommendationFlag(night.average_score);
+      const peak = `${fmtTime(night.peak_start)}-${fmtTime(night.peak_end)}`;
+      return `${label.padEnd(16)} ${s}  Rec: ${rec}\n${"".padEnd(16)} Best: ${fmtTime(night.best_time)}  Peak: ${peak}  Deploy by: ${fmtTime(night.deploy_by)}\n${"".padEnd(16)} Main concern: ${lowercaseFactorAfterColon(night.main_concern)}`;
+    }
+
+    function lowercaseFactorAfterColon(s) {
+      return s.replace(/^([A-Za-z ]+)( \()/, (m, factor, rest) => factor.toLowerCase() + rest);
+    }
+
+    function generateReport(lat, lon, timezone, regionName, forecastNights, historicalNights) {
+      if (!forecastNights.length) return "Unable to fetch weather data. Please check your internet connection or CORS/browser privacy settings.";
+      let report = `\n${"=".repeat(78)}\n`;
+      report += "NOCTURNAL AUDIO RECORDING FORECAST: Is the weather good for recording?\n";
+      report += "Optimized for audio quality, sound propagation, and low wind noise. Does not forecast migration numbers.\n";
+      report += `Location: ${lat}°, ${lon}°  |  Timezone: ${timezone}\n`;
+      report += "Change latitude, longitude, and timezone in the web form; adjust factor weights in the embedded JavaScript.\n";
+      report += `Generated: ${fmtDateTime(new Date())}\n`;
+      report += `${"=".repeat(78)}\n`;
+
+      report += "\nDECISION SUMMARY (Quick Scan)\n";
+      report += `${"-".repeat(78)}\n`;
+      forecastNights.forEach((night, i) => {
+        report += decisionSummaryLine(forecastNightLabel(i + 1), night) + "\n\n";
+      });
+
+      report += `${"=".repeat(78)}\n`;
+      report += "FORECAST DETAIL (Next Night Windows)\n";
+      report += `${"=".repeat(78)}\n`;
+      forecastNights.forEach((night, i) => {
+        const [s, label] = recommendationLinesForNight(night, false);
+        const nightConditions = summarizeNightConditions(night);
+        report += `\n${i + 1}. ${forecastNightLabel(i + 1)}: ${fmtDateTime(night.twilight_start)} (Dusk hour) → ${fmtDateTime(night.twilight_end)} (Dawn hour)\n`;
+        report += `   ${s}\n`;
+        report += `   ${label}\n`;
+        report += `   Recording Quality Score: ${formatScore10(night.average_score)}\n`;
+        report += `   Recommended: ${recommendationFlag(night.average_score)}\n`;
+        report += `   Best Hour: ${fmtTime(night.best_time)}\n`;
+        report += `   Peak Window: ${fmtTime(night.peak_start)}–${fmtTime(night.peak_end)}\n`;
+        report += `   Deploy by: ${fmtTime(night.deploy_by)}\n`;
+        report += `   Main concern: ${lowercaseFactorAfterColon(night.main_concern)}\n`;
+        report += "\n   Audio Conditions for the Night:\n";
+        Object.entries(nightConditions).forEach(([metric, details]) => {
+          report += `   • ${metric.padEnd(20)} ${details}\n`;
+        });
+        report += `\n   Audio Conditions at Best Hour (${fmtTime(night.best_time)}):\n`;
+        Object.entries(night.best_condition_score.factors).forEach(([factor, [score, explanation]]) => {
+          report += `   • ${factor.padEnd(20)} ${formatScore10(score).padStart(6)} - ${explanation}\n`;
+        });
+      });
+
+      if (historicalNights.length) {
+        report += `\n${"=".repeat(78)}\n`;
+        report += "OBSERVED CONDITIONS (Previous 3 Night Windows)\n";
+        report += `${"=".repeat(78)}\n`;
+        historicalNights.forEach((night, i) => {
+          const [s, label] = recommendationLinesForNight(night, true);
+          const nightConditions = summarizeNightConditions(night);
+          report += `\n${i + 1}. ${historicalNightLabel(i + 1)}: ${fmtDateTime(night.twilight_start)} (Dusk hour) → ${fmtDateTime(night.twilight_end)} (Dawn hour)\n`;
+          report += `   ${s}\n`;
+          report += `   ${label}\n`;
+          report += `   Recording Quality Score: ${formatScore10(night.average_score)}\n`;
+          report += `   Recommended: ${recommendationFlag(night.average_score)}\n`;
+          report += `   Best Hour: ${fmtTime(night.best_time)}\n`;
+          report += `   Peak Window: ${fmtTime(night.peak_start)}–${fmtTime(night.peak_end)}\n`;
+          report += `   Deploy by: ${fmtTime(night.deploy_by)}\n`;
+          report += `   Main concern: ${lowercaseFactorAfterColon(night.main_concern)}\n`;
+          report += "\n   Audio Conditions for the Night:\n";
+          Object.entries(nightConditions).forEach(([metric, details]) => {
+            report += `   • ${metric.padEnd(20)} ${details}\n`;
+          });
+          report += `\n   Audio Conditions at Best Hour (${fmtTime(night.best_time)}):\n`;
+          Object.entries(night.best_condition_score.factors).forEach(([factor, [score, explanation]]) => {
+            report += `   • ${factor.padEnd(20)} ${formatScore10(score).padStart(6)} - ${explanation}\n`;
+          });
+        });
+      }
+
+      report += `\n${"=".repeat(78)}\n`;
+      report += "APPENDIX: METHOD + CUSTOMIZATION\n";
+      report += `${"=".repeat(78)}\n`;
+      report += "Data notes:\n";
+      report += "  • Timezone can be automatically detected from coordinates\n";
+      report += "  • 10 m wind is API model output; ground wind is derived estimate (~2 m)\n";
+      report += "  • Visibility uses API hourly visibility when available; otherwise estimated fallback\n";
+      report += "  • Night windows are based on astronomical dusk-to-dawn hour bounds\n";
+      report += "  • Pressure wording: 'steady' = small net change; 'very stable' = small total range\n";
+      report += "  • TXT and JSON reports are generated in the browser and not uploaded anywhere\n\n";
+      report += `Scoring model version: ${MODEL_VERSION}\n\n`;
+      report += "Factor Weighting:\n";
+      Object.entries(weights).forEach(([factor, weight]) => {
+        report += `  • ${factor.padEnd(20)} ${(weight * 100).toFixed(0)}% - ${weightRationale[factor] || ""}\n`;
+      });
+      return report;
+    }
+
+    function renderNightCard(night) {
+      const recClass = night.recommended === "Yes" ? "rec-yes" : night.recommended === "Borderline" ? "rec-borderline" : "rec-no";
+      const isObserved = night.type === "historical";
+      const card = document.createElement("article");
+      card.className = `card night-card${isObserved ? " observed-card" : ""}`;
+      card.innerHTML = `
+        <div class="badge-row">
+          <span class="badge ${isObserved ? "observed" : ""}">${escapeHtml(isObserved ? "Observed" : "Forecast")}</span>
+          <span class="badge ${recClass}">Recommended: ${escapeHtml(night.recommended)}</span>
+        </div>
+        <h3>${escapeHtml(night.label)}</h3>
+        <div class="score">${escapeHtml(night.average_score_10.toFixed(1))}/10</div>
+        <div>${escapeHtml(night.stars)}</div>
+        <p><strong>${escapeHtml(night.recommendation_text)}</strong></p>
+        <p class="muted">${escapeHtml(night.twilight_start.replace("T", " "))} → ${escapeHtml(night.twilight_end.replace("T", " "))}</p>
+        <p><strong>Best hour:</strong> ${escapeHtml(night.best_time)} · <strong>Peak:</strong> ${escapeHtml(night.peak_start)}–${escapeHtml(night.peak_end)} · <strong>Deploy by:</strong> ${escapeHtml(night.deploy_by)}</p>
+        <p><strong>Main concern:</strong> ${escapeHtml(lowercaseFactorAfterColon(night.main_concern))}</p>
+        <details>
+          <summary>Night conditions</summary>
+          <table>
+            <tbody>${Object.entries(night.night_conditions_summary).map(([k, v]) => `<tr><th>${escapeHtml(k)}</th><td>${escapeHtml(v)}</td></tr>`).join("")}</tbody>
+          </table>
+        </details>
+        <details>
+          <summary>Best-hour factor scores</summary>
+          <table>
+            <thead><tr><th>Factor</th><th>Score</th><th>Explanation</th></tr></thead>
+            <tbody>${Object.entries(night.best_hour_factor_scores).map(([k, v]) => `<tr><th>${escapeHtml(k)}</th><td>${escapeHtml(v.score_10.toFixed(1))}/10</td><td>${escapeHtml(v.explanation)}</td></tr>`).join("")}</tbody>
+          </table>
+        </details>
+      `;
+      return card;
+    }
+
+    function renderSummary(structured) {
+      els.forecastSummary.innerHTML = "";
+      els.observedSummary.innerHTML = "";
+
+      structured.forecast_nights.forEach(night => {
+        els.forecastSummary.appendChild(renderNightCard(night));
+      });
+
+      structured.historical_nights.forEach(night => {
+        els.observedSummary.appendChild(renderNightCard(night));
+      });
+
+      els.forecastSection.hidden = structured.forecast_nights.length === 0;
+      els.observedSection.hidden = structured.historical_nights.length === 0;
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>'"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;","\"":"&quot;"}[c]));
+    }
+
+    function sanitizeFilename(text) {
+      return text.replace(/[<>:"/\\|?*]+/g, "-").replace(/\s+/g, " ").trim().replace(/^\.+|\.+$/g, "") || "NFC recording forecast";
+    }
+
+    function buildOutputBasename(lat, lon, regionName, forecastNights) {
+      const first = forecastNights[0]?.twilight_start ? dateIso(forecastNights[0].twilight_start) : dateIso(new Date());
+      return sanitizeFilename(`Recording forecasts - ${regionName || `${lat.toFixed(4)}, ${lon.toFixed(4)}`} - ${first}`);
+    }
+
+    function downloadFile(filename, content, type) {
+      const blob = new Blob([content], { type });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    async function runForecast() {
+      const lat = Number(els.lat.value);
+      const lon = Number(els.lon.value);
+      const forecastDays = Number(els.forecastDays.value);
+      if (!Number.isFinite(lat) || !Number.isFinite(lon)) {
+        setStatus("Enter valid latitude and longitude values.");
+        return;
+      }
+      els.runBtn.disabled = true;
+      els.downloadTxtBtn.disabled = true;
+      els.downloadJsonBtn.disabled = true;
+      els.forecastSummary.innerHTML = "";
+      els.observedSummary.innerHTML = "";
+      els.forecastSection.hidden = true;
+      els.observedSection.hidden = true;
+      els.locationResolved.textContent = "";
+      els.detailSection.style.display = "none";
+      setStatus("Fetching timezone, region name, forecast, historical weather, and twilight windows...");
+      try {
+        twilightCache.clear();
+        nightWindowCache.clear();
+        const [timezone, regionName] = await Promise.all([
+          detectTimezoneName(lat, lon, els.tz.value),
+          detectRegionName(lat, lon),
+        ]);
+        els.tz.value = timezone;
+        els.locationResolved.textContent = `Region: ${regionName}`;
+        const [forecastMetrics, historicalMetrics] = await Promise.all([
+          fetchForecast(lat, lon, timezone, forecastDays),
+          fetchHistorical(lat, lon, timezone, 3),
+        ]);
+        setStatus("Scoring night windows...");
+        const forecastNights = await getBestNights(lat, lon, forecastMetrics, forecastDays);
+        const historicalNights = await getHistoricalNights(lat, lon, historicalMetrics, 3);
+        lastStructured = generateStructuredOutput(lat, lon, timezone, regionName, forecastNights, historicalNights);
+        lastReport = generateReport(lat, lon, timezone, regionName, forecastNights, historicalNights);
+        lastBaseName = buildOutputBasename(lat, lon, regionName, forecastNights);
+        renderSummary(lastStructured);
+        els.reportText.textContent = lastReport;
+        els.detailSection.style.display = "block";
+        els.downloadTxtBtn.disabled = false;
+        els.downloadJsonBtn.disabled = false;
+        setStatus(`Done. Generated ${forecastNights.length} forecast night(s) and ${historicalNights.length} observed night(s).`);
+      } catch (err) {
+        console.error(err);
+        setStatus(`Error: ${err.message}. If this is a browser CORS or privacy-blocking issue, try another browser or host the file on a simple static web server.`);
+      } finally {
+        els.runBtn.disabled = false;
+      }
+    }
+
+    els.runBtn.addEventListener("click", runForecast);
+    els.downloadTxtBtn.addEventListener("click", () => downloadFile(`${lastBaseName}.txt`, lastReport, "text/plain;charset=utf-8"));
+    els.downloadJsonBtn.addEventListener("click", () => downloadFile(`${lastBaseName}.json`, JSON.stringify(lastStructured, null, 2), "application/json;charset=utf-8"));
+  </script>
+</body>
+</html>
