@@ -64,7 +64,7 @@ class NocturnalRecordingForecast:
 		self.fcc_geo_url = "https://geo.fcc.gov/api/census/block/find"
 		self.nominatim_reverse_url = "https://nominatim.openstreetmap.org/reverse"
 
-		self.model_version = "1.4.0"
+		self.model_version = "1.5.0"
 
 		self.timezone_name = self._detect_timezone_name()
 		self.local_tz = ZoneInfo(self.timezone_name)
@@ -194,9 +194,7 @@ class NocturnalRecordingForecast:
 			"addressdetails": 1,
 			"zoom": 10,
 		}
-		headers = {
-			"User-Agent": f"NocturnalRecordingForecast/{self.model_version}"
-		}
+		headers = {"User-Agent": f"NocturnalRecordingForecast/{self.model_version}"}
 
 		try:
 			r = requests.get(self.nominatim_reverse_url, params=params, headers=headers, timeout=20)
@@ -289,18 +287,78 @@ class NocturnalRecordingForecast:
 		filled = max(1, min(5, filled))
 		return "⭐" * filled + "⭐︎" * (5 - filled)
 
-	def recommendation_lines_for_score(self, overall_100: float) -> Tuple[str, str]:
+	def _tier_from_score(self, overall_100: float) -> int:
 		if overall_100 >= 90:
-			return self._stars(5), "EXCELLENT - Ideal audio recording conditions"
-		elif overall_100 >= 80:
-			return self._stars(4), "VERY GOOD - Excellent conditions for clear recordings"
-		elif overall_100 >= 70:
-			return self._stars(3), "GOOD - Favorable conditions, expect clean audio"
-		elif overall_100 >= 60:
-			return self._stars(2), "FAIR - Acceptable but some audio challenges"
-		elif overall_100 >= 50:
-			return self._stars(1), "POOR - Significant noise/clarity issues expected"
-		return self._stars(1), "VERY POOR - Not recommended for recording"
+			return 5
+		if overall_100 >= 80:
+			return 4
+		if overall_100 >= 70:
+			return 3
+		if overall_100 >= 60:
+			return 2
+		return 1
+
+	def _format_factor_list(self, factors: List[str]) -> str:
+		if not factors:
+			return "minor factors"
+		if len(factors) == 1:
+			return factors[0]
+		if len(factors) == 2:
+			return f"{factors[0]} and {factors[1]}"
+		return ", ".join(factors[:-1]) + f", and {factors[-1]}"
+
+	def _top_limiting_factors_from_factors(
+		self,
+		factors: Dict[str, Tuple[float, str]],
+		max_n: int = 2
+	) -> List[str]:
+		"""
+		Limiting factor importance = weighted penalty:
+			penalty = (100 - factor_score) * factor_weight
+		"""
+		penalties: List[Tuple[str, float]] = []
+		for factor_name in self.weights:
+			score = factors.get(factor_name, (100.0, ""))[0]
+			penalty = (100.0 - score) * self.weights[factor_name]
+			penalties.append((factor_name, penalty))
+
+		penalties.sort(key=lambda x: x[1], reverse=True)
+
+		# Keep positive penalties; fallback to top factor even if tiny
+		positive = [f for f, p in penalties if p > 0.1]
+		if not positive:
+			return [penalties[0][0]] if penalties else []
+
+		return positive[:max_n]
+
+	def _recommendation_lines_from_score_and_factors(
+		self,
+		overall_100: float,
+		factors: Dict[str, Tuple[float, str]],
+	) -> Tuple[str, str]:
+		tier = self._tier_from_score(overall_100)
+		stars = self._stars(tier)
+		limiting_1 = self._top_limiting_factors_from_factors(factors, max_n=1)
+		limiting_2 = self._top_limiting_factors_from_factors(factors, max_n=2)
+
+		if tier == 5:
+			text = "IDEAL - Expect clean audio for most or all of the night"
+		elif tier == 4:
+			text = f"EXCELLENT - Expect clean audio for much of the night, limited only by {self._format_factor_list(limiting_1)}"
+		elif tier == 3:
+			text = f"FAIR - {self._format_factor_list(limiting_2)} will limit quality for much of the night"
+		elif tier == 2:
+			text = f"POOR - Recording quality will be severely affected by {self._format_factor_list(limiting_2)}"
+		else:
+			text = "UNACCEPTABLE - Expect only noise"
+
+		return stars, text
+
+	def _recommendation_lines_for_night(self, night: Dict) -> Tuple[str, str]:
+		# Build factor-like dict from night-level factor averages
+		factor_avgs = self._factor_averages_for_night(night)
+		factor_dict = {k: (factor_avgs.get(k, 100.0), "") for k in self.weights}
+		return self._recommendation_lines_from_score_and_factors(night["average_score"], factor_dict)
 
 	def _recommendation_flag(self, overall_100: float) -> str:
 		if overall_100 >= 75:
@@ -798,7 +856,7 @@ class NocturnalRecordingForecast:
 		}
 
 		overall = sum(factors[k][0] * self.weights[k] for k in self.weights)
-		stars, label = self.recommendation_lines_for_score(overall)
+		stars, label = self._recommendation_lines_from_score_and_factors(overall, factors)
 		return AcousticScore(
 			overall_score=overall,
 			factors=factors,
@@ -1047,7 +1105,7 @@ class NocturnalRecordingForecast:
 		}
 
 	def _serialize_night(self, night: Dict, label: str, night_type: str) -> Dict[str, Any]:
-		stars, label_text = self.recommendation_lines_for_score(night["average_score"])
+		stars, label_text = self._recommendation_lines_for_night(night)
 		night_conditions = self.summarize_night_conditions(night)
 
 		factor_avgs = self._factor_averages_for_night(night)
@@ -1150,7 +1208,7 @@ class NocturnalRecordingForecast:
 	# ----------------------------
 
 	def _decision_summary_line(self, idx_label: str, night: Dict) -> str:
-		stars, _ = self.recommendation_lines_for_score(night["average_score"])
+		stars, _ = self._recommendation_lines_for_night(night)
 		rec = self._recommendation_flag(night["average_score"])
 		best_h = night["best_time"].strftime("%H:%M")
 		peak = f"{night['peak_start'].strftime('%H:%M')}-{night['peak_end'].strftime('%H:%M')}"
@@ -1195,7 +1253,7 @@ class NocturnalRecordingForecast:
 
 		for i, night in enumerate(forecast_nights, 1):
 			tw_start, tw_end = night["twilight_start"], night["twilight_end"]
-			stars, label = self.recommendation_lines_for_score(night["average_score"])
+			stars, label = self._recommendation_lines_for_night(night)
 			night_conditions = self.summarize_night_conditions(night)
 			forecast_label = self._forecast_night_label(i)
 			rec_flag = self._recommendation_flag(night["average_score"])
@@ -1232,7 +1290,7 @@ class NocturnalRecordingForecast:
 
 			for i, night in enumerate(historical_nights, 1):
 				tw_start, tw_end = night["twilight_start"], night["twilight_end"]
-				stars, label = self.recommendation_lines_for_score(night["average_score"])
+				stars, label = self._recommendation_lines_for_night(night)
 				night_conditions = self.summarize_night_conditions(night)
 				historical_label = self._historical_night_label(i)
 				rec_flag = self._recommendation_flag(night["average_score"])
